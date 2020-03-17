@@ -19,7 +19,6 @@ const App = () => {
         setConfirmedPH(res.confirmed.value)
         setRecoveredPH(res.recovered.value)
         setDeathsPH(res.deaths.value)
-        setUpdate(res.lastUpdate)
       })
   }
 
@@ -30,6 +29,7 @@ const App = () => {
         setConfirmedGlobal(res.confirmed.value)
         setRecoveredGlobal(res.recovered.value)
         setDeathsGlobal(res.deaths.value)
+        setUpdate(res.lastUpdate)
       })
   }
 
