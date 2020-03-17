@@ -97,7 +97,7 @@ const App = () => {
 
       <p className="mt-10 text-sm">Last update {update}</p>
 
-      <div className="mt-10 md:mt-20 text-3xl">Laban Pilipinas! ❤💕</div>
+      <div className="mt-10 md:mt-20 text-3xl">Laban Pilipinas! ❤</div>
 
       <footer className="md:fixed bottom-0 w-full p-3 text-center">
         <p className="flex flex-col md:flex-row justify-between items-center leading-tight text-xs">
