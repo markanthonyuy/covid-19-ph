@@ -12,6 +12,10 @@
   color: white;
 }
 
+.box {
+  height: 165px;
+}
+
 .logo {
   animation: 5s rotate linear infinite;
 }

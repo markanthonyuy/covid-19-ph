@@ -68,17 +68,17 @@ const App = () => {
           alt=""
         />
       </h2>
-      <div className="body md:flex justify-center items-center">
-        <div className="md:w-1/3 box p-3 md:p-5">
+      <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
+        <div className="md:w-1/3 flex-1 flex flex-col justify-center box p-3 md:p-5 bg-gray-100 rounded-lg mx-2 mb-3 md:mb-0 shadow">
           <p className="py-2 text-xl">Cases</p>
           <span className="text-4xl">{confirmedPH}</span>
         </div>
-        <div className="md:w-1/3 box p-3 md:p-5 bg-blue-600 text-white">
+        <div className="md:w-1/3 flex-1 box p-3 md:p-5 bg-blue-600 text-white rounded-lg mx-2 mb-3 md:mb-0 shadow">
           <p className="py-2 text-xl">Recovered</p>
           <span className="text-4xl leading-normal block">{recoveredPH}</span>
           <span className="text-sm">({recoveredPHPercent}%)</span>
         </div>
-        <div className="md:w-1/3 box p-3 md:p-5 bg-red-500">
+        <div className="md:w-1/3 flex-1 box p-3 md:p-5 bg-red-500 rounded-lg mx-2 mb-3 md:mb-0 shadow">
           <p className="py-2 text-xl">Deaths</p>
           <span className="text-4xl leading-normal block">{deathsPH}</span>
           <span className="text-sm">({deathsPHPercent}%)</span>
@@ -87,19 +87,19 @@ const App = () => {
 
       <h2 className="text-xl mt-10 mb-2">Global</h2>
       <div className="body md:flex justify-center items-center bg-yellow-200 pb-3">
-        <div className="md:w-1/3 box">
+        <div className="md:w-1/3">
           <p className="md:w-2/3 mx-auto m-2 p-2 text-md border-b">Cases</p>
           <span className="text-sm">
             {new Intl.NumberFormat().format(confirmedGlobal)}
           </span>
         </div>
-        <div className="md:w-1/3 box">
+        <div className="md:w-1/3">
           <p className="md:w-2/3 mx-auto m-2 p-2 text-md border-b">Recovered</p>
           <span className="text-sm">
             {new Intl.NumberFormat().format(recoveredGlobal)}
           </span>
         </div>
-        <div className="md:w-1/3 box">
+        <div className="md:w-1/3">
           <p className="md:w-2/3 mx-auto m-2 p-2 text-md border-b">Deaths</p>
           <span className="text-sm">
             {new Intl.NumberFormat().format(deathsGlobal)}
