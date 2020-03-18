@@ -114,7 +114,7 @@ const App = () => {
       <footer className="md:fixed bottom-0 w-full p-3 text-center">
         <p className="flex flex-col md:flex-row justify-between items-center leading-tight text-xs">
           <span className="p-1">
-            Icons made by{' '}
+            Virus icon made by{' '}
             <a
               href="https://www.flaticon.com/authors/smashicons"
               title="Smashicons"
