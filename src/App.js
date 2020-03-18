@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import bacteria from './bacteria.svg'
 
+const API_ENDPOINT = 'https://covid19.mathdro.id/api/'
+
 const App = () => {
   const [confirmedPH, setConfirmedPH] = useState(0)
   const [recoveredPH, setRecoveredPH] = useState(0)
   const [deathsPH, setDeathsPH] = useState(0)
+  const [deathsPHPercent, setDeathsPHPercent] = useState(0)
+  const [recoveredPHPercent, setRecoveredPHPercent] = useState(0)
 
   const [confirmedGlobal, setConfirmedGlobal] = useState(0)
   const [recoveredGlobal, setRecoveredGlobal] = useState(0)
@@ -13,17 +17,23 @@ const App = () => {
   const [update, setUpdate] = useState('')
 
   const getPHData = () => {
-    fetch('https://covid19.mathdro.id/api/countries/ph/')
+    fetch(`${API_ENDPOINT}countries/ph/`)
       .then(res => res.json())
       .then(res => {
         setConfirmedPH(res.confirmed.value)
         setRecoveredPH(res.recovered.value)
         setDeathsPH(res.deaths.value)
+        setDeathsPHPercent(
+          ((res.deaths.value / res.confirmed.value) * 100).toFixed(2)
+        )
+        setRecoveredPHPercent(
+          ((res.recovered.value / res.confirmed.value) * 100).toFixed(2)
+        )
       })
   }
 
   const getGlobalData = () => {
-    fetch('https://covid19.mathdro.id/api/')
+    fetch(API_ENDPOINT)
       .then(res => res.json())
       .then(res => {
         setConfirmedGlobal(res.confirmed.value)
@@ -35,15 +45,15 @@ const App = () => {
 
   useEffect(() => {
     getPHData()
-    setInterval(getPHData, 30000)
+    setInterval(getPHData, 60000)
     getGlobalData()
-    setInterval(getGlobalData, 30000)
+    setInterval(getGlobalData, 60000)
   }, [])
 
   return (
     <div className="App h-screen">
       <header className="App-header p-10">
-        <img src={bacteria} alt="" width="50" />
+        <img src={bacteria} alt="" width="50" className="logo" />
         <h1 className="w-full text-5xl leading-tight text-center">
           COVID-19 PH Tracker
         </h1>
@@ -58,23 +68,25 @@ const App = () => {
           alt=""
         />
       </h2>
-      <div className="body md:flex justify-center items-center border">
-        <div className="md:w-1/3 box p-5 bg-gray-100">
-          <p className="p-3 text-3xl">Cases</p>
-          <span className="text-2xl">{confirmedPH}</span>
+      <div className="body md:flex justify-center items-center">
+        <div className="md:w-1/3 box p-3 md:p-5">
+          <p className="py-2 text-xl">Cases</p>
+          <span className="text-4xl">{confirmedPH}</span>
         </div>
-        <div className="md:w-1/3 box p-5 bg-blue-700 text-white">
-          <p className="p-3 text-3xl">Recovered</p>
-          <span className="text-2xl">{recoveredPH}</span>
+        <div className="md:w-1/3 box p-3 md:p-5 bg-blue-600 text-white">
+          <p className="py-2 text-xl">Recovered</p>
+          <span className="text-4xl leading-normal block">{recoveredPH}</span>
+          <span className="text-sm">({recoveredPHPercent}%)</span>
         </div>
-        <div className="md:w-1/3 box p-5 bg-red-600">
-          <p className="p-3 text-3xl">Deaths</p>
-          <span className="text-2xl">{deathsPH}</span>
+        <div className="md:w-1/3 box p-3 md:p-5 bg-red-500">
+          <p className="py-2 text-xl">Deaths</p>
+          <span className="text-4xl leading-normal block">{deathsPH}</span>
+          <span className="text-sm">({deathsPHPercent}%)</span>
         </div>
       </div>
 
       <h2 className="text-xl mt-10 mb-2">Global</h2>
-      <div className="body md:flex justify-center items-center bg-gray-100 pb-3">
+      <div className="body md:flex justify-center items-center bg-yellow-200 pb-3">
         <div className="md:w-1/3 box">
           <p className="md:w-2/3 mx-auto m-2 p-2 text-md border-b">Cases</p>
           <span className="text-sm">
@@ -97,7 +109,7 @@ const App = () => {
 
       <p className="mt-10 text-sm">Last update {update}</p>
 
-      <div className="mt-10 md:mt-20 text-3xl">Laban Pilipinas! ❤</div>
+      <div className="mt-10 md:mt-20 text-3xl">Laban Pilipinas! 💪</div>
 
       <footer className="md:fixed bottom-0 w-full p-3 text-center">
         <p className="flex flex-col md:flex-row justify-between items-center leading-tight text-xs">
