@@ -15,7 +15,11 @@ const App = () => {
   const [confirmedGlobal, setConfirmedGlobal] = useState(0)
   const [recoveredGlobal, setRecoveredGlobal] = useState(0)
   const [deathsGlobal, setDeathsGlobal] = useState(0)
+  const [deathsGlobalPercent, setDeathsGlobalPercent] = useState(0)
+  const [recoveredGlobalPercent, setRecoveredGlobalPercent] = useState(0)
+
   const [update, setUpdate] = useState('')
+
   const [chartPH, setChartPH] = useState(false)
   const [chartGlobal, setChartGlobal] = useState(false)
 
@@ -43,6 +47,12 @@ const App = () => {
         setRecoveredGlobal(res.recovered.value)
         setDeathsGlobal(res.deaths.value)
         setUpdate(res.lastUpdate)
+        setDeathsGlobalPercent(
+          ((res.deaths.value / res.confirmed.value) * 100).toFixed(2)
+        )
+        setRecoveredGlobalPercent(
+          ((res.recovered.value / res.confirmed.value) * 100).toFixed(2)
+        )
       })
   }
 
@@ -72,7 +82,7 @@ const App = () => {
         />
       </h2>
       <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
-        <div className="md:w-1/3 flex-1 flex flex-col justify-center box p-3 md:p-5 bg-gray-100 rounded-lg mx-2 mb-3 md:mb-0 shadow">
+        <div className="md:w-1/3 flex-1 flex flex-col box p-3 md:p-5 bg-gray-100 rounded-lg mx-2 mb-3 md:mb-0 shadow">
           <p className="py-2 text-xl">Cases</p>
           <span className="text-4xl">{confirmedPH}</span>
         </div>
@@ -121,23 +131,35 @@ const App = () => {
       </div>
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
-      <div className="body md:flex justify-center items-center bg-yellow-200 pb-3">
-        <div className="md:w-1/3">
-          <p className="md:w-2/3 mx-auto m-2 p-2 text-md border-b">Cases</p>
-          <span className="text-sm">
+      <div className="body md:flex justify-center bg-yellow-200 md:pb-3">
+        <div className="md:w-1/3 py-4 md:py-0 border-b border-yellow-300 md:border-b-0">
+          <p className="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b">
+            Cases
+          </p>
+          <span className="text-2xl">
             {new Intl.NumberFormat().format(confirmedGlobal)}
           </span>
         </div>
-        <div className="md:w-1/3">
-          <p className="md:w-2/3 mx-auto m-2 p-2 text-md border-b">Recovered</p>
-          <span className="text-sm">
+        <div className="md:w-1/3 py-4 md:py-0 border-b border-yellow-300 md:border-b-0">
+          <p className="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b">
+            Recovered
+          </p>
+          <span className="text-2xl block">
             {new Intl.NumberFormat().format(recoveredGlobal)}
           </span>
+          <span className="text-xs text-gray-500">
+            ({recoveredGlobalPercent}%)
+          </span>
         </div>
-        <div className="md:w-1/3">
-          <p className="md:w-2/3 mx-auto m-2 p-2 text-md border-b">Deaths</p>
-          <span className="text-sm">
+        <div className="md:w-1/3 py-4 md:py-0">
+          <p className="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b">
+            Deaths
+          </p>
+          <span className="text-2xl block">
             {new Intl.NumberFormat().format(deathsGlobal)}
+          </span>
+          <span className="text-xs text-gray-500">
+            ({deathsGlobalPercent}%)
           </span>
         </div>
       </div>
@@ -161,7 +183,7 @@ const App = () => {
             labels: ['Cases', 'Recovered', 'Deaths'],
             datasets: [
               {
-                backgroundColor: ['#f7fafc', '#3182ce', '#f56565'],
+                backgroundColor: ['#fefcbf', '#fefcbf', '#fefcbf'],
                 borderWidth: 1,
                 hoverBorderColor: '#000',
                 data: [confirmedGlobal, recoveredGlobal, deathsGlobal]
