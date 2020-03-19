@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Bar } from 'react-chartjs-2'
 import './App.css'
 import bacteria from './bacteria.svg'
 
@@ -15,6 +16,8 @@ const App = () => {
   const [recoveredGlobal, setRecoveredGlobal] = useState(0)
   const [deathsGlobal, setDeathsGlobal] = useState(0)
   const [update, setUpdate] = useState('')
+  const [chartPH, setChartPH] = useState(false)
+  const [chartGlobal, setChartGlobal] = useState(false)
 
   const getPHData = () => {
     fetch(`${API_ENDPOINT}countries/ph/`)
@@ -85,7 +88,39 @@ const App = () => {
         </div>
       </div>
 
-      <h2 className="text-xl mt-10 mb-2">Global</h2>
+      <button
+        className="btn-apply m-auto my-6 bg-green-400 py-2 text-sm text-white px-6 rounded shadow"
+        onClick={() => setChartPH(!chartPH)}
+      >
+        {chartPH ? 'Hide' : 'Show'} Chart
+      </button>
+
+      <div
+        className={
+          chartPH
+            ? 'chart w-full md:w-2/4 lg:w-5/12 mx-auto mt-8} block'
+            : 'chart w-full md:w-2/4 lg:w-5/12 mx-auto mt-8} hidden'
+        }
+      >
+        <Bar
+          data={{
+            labels: ['Cases', 'Recovered', 'Deaths'],
+            datasets: [
+              {
+                backgroundColor: ['#f7fafc', '#3182ce', '#f56565'],
+                borderWidth: 1,
+                hoverBorderColor: '#000',
+                data: [confirmedPH, recoveredPH, deathsPH]
+              }
+            ]
+          }}
+          legend={{
+            display: false
+          }}
+        ></Bar>
+      </div>
+
+      <h2 className="text-xl mt-5 mb-2">Global</h2>
       <div className="body md:flex justify-center items-center bg-yellow-200 pb-3">
         <div className="md:w-1/3">
           <p className="md:w-2/3 mx-auto m-2 p-2 text-md border-b">Cases</p>
@@ -107,11 +142,43 @@ const App = () => {
         </div>
       </div>
 
+      <button
+        className="btn-apply m-auto my-6 bg-green-400 py-2 text-sm text-white px-6 rounded shadow"
+        onClick={() => setChartGlobal(!chartGlobal)}
+      >
+        {chartGlobal ? 'Hide' : 'Show'} Chart
+      </button>
+
+      <div
+        className={
+          chartGlobal
+            ? 'chart w-full md:w-2/4 lg:w-5/12 mx-auto mt-8} block'
+            : 'chart w-full md:w-2/4 lg:w-5/12 mx-auto mt-8} hidden'
+        }
+      >
+        <Bar
+          data={{
+            labels: ['Cases', 'Recovered', 'Deaths'],
+            datasets: [
+              {
+                backgroundColor: ['#f7fafc', '#3182ce', '#f56565'],
+                borderWidth: 1,
+                hoverBorderColor: '#000',
+                data: [confirmedGlobal, recoveredGlobal, deathsGlobal]
+              }
+            ]
+          }}
+          legend={{
+            display: false
+          }}
+        ></Bar>
+      </div>
+
       <p className="mt-10 text-sm">Last update {update}</p>
 
       <div className="mt-10 md:mt-20 text-3xl">Laban Pilipinas! 💪</div>
 
-      <footer className="md:fixed bottom-0 w-full p-3 text-center">
+      <footer className="w-full p-3 text-center">
         <p className="flex flex-col md:flex-row justify-between items-center leading-tight text-xs">
           <span className="p-1">
             Virus icon made by{' '}
