@@ -82,7 +82,7 @@ const App = () => {
         />
       </h2>
       <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
-        <div className="md:w-1/3 flex-1 flex flex-col box p-3 md:p-5 bg-gray-100 rounded-lg mx-2 mb-3 md:mb-0 shadow">
+        <div className="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-gray-100 rounded-lg mx-2 mb-3 md:mb-0 shadow">
           <p className="py-2 text-xl">Cases</p>
           <span className="text-4xl">{confirmedPH}</span>
         </div>
