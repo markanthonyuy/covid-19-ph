@@ -2,8 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Bar } from 'react-chartjs-2'
 import './App.css'
 import bacteria from './bacteria.svg'
+import CountUp from 'react-countup'
+import ReactTimeAgo from 'react-timeago'
 
 const API_ENDPOINT = 'https://covid19.mathdro.id/api/'
+
+const Count = (props) => {
+  return <CountUp separator="," {...props}></CountUp>
+}
 
 const App = () => {
   const [confirmedPH, setConfirmedPH] = useState(0)
@@ -12,11 +18,26 @@ const App = () => {
   const [deathsPHPercent, setDeathsPHPercent] = useState(0)
   const [recoveredPHPercent, setRecoveredPHPercent] = useState(0)
 
+  const [deathsPHPercentVisibility, setDeathsPHPercentVisibility] = useState(
+    false
+  )
+  const [
+    recoveredPHPercentVisibility,
+    setRecoveredPHPercentVisibility,
+  ] = useState(false)
+
   const [confirmedGlobal, setConfirmedGlobal] = useState(0)
+
   const [recoveredGlobal, setRecoveredGlobal] = useState(0)
   const [deathsGlobal, setDeathsGlobal] = useState(0)
+
   const [deathsGlobalPercent, setDeathsGlobalPercent] = useState(0)
   const [recoveredGlobalPercent, setRecoveredGlobalPercent] = useState(0)
+
+  const [deathGlobalVisibility, setDeathGlobalVisibility] = useState(false)
+  const [recoveredGlobalVisibility, setRecoveredGlobalVisibility] = useState(
+    false
+  )
 
   const [update, setUpdate] = useState('')
 
@@ -25,8 +46,8 @@ const App = () => {
 
   const getPHData = () => {
     fetch(`${API_ENDPOINT}countries/ph/`)
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         setConfirmedPH(res.confirmed.value)
         setRecoveredPH(res.recovered.value)
         setDeathsPH(res.deaths.value)
@@ -41,8 +62,8 @@ const App = () => {
 
   const getGlobalData = () => {
     fetch(API_ENDPOINT)
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         setConfirmedGlobal(res.confirmed.value)
         setRecoveredGlobal(res.recovered.value)
         setDeathsGlobal(res.deaths.value)
@@ -84,17 +105,37 @@ const App = () => {
       <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
         <div className="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-gray-100 rounded-lg mx-2 mb-3 md:mb-0 shadow">
           <p className="py-2 text-xl">Cases</p>
-          <span className="text-4xl">{confirmedPH}</span>
+          <span className="text-4xl">{<Count end={confirmedPH} />}</span>
         </div>
         <div className="md:w-1/3 flex-1 box p-3 md:p-5 bg-blue-600 text-white rounded-lg mx-2 mb-3 md:mb-0 shadow">
           <p className="py-2 text-xl">Recovered</p>
-          <span className="text-4xl leading-normal block">{recoveredPH}</span>
-          <span className="text-sm">({recoveredPHPercent}%)</span>
+          <span className="text-4xl leading-normal block">
+            {
+              <Count
+                end={recoveredPH}
+                onEnd={() => setRecoveredPHPercentVisibility(true)}
+              />
+            }
+          </span>
+          <span
+            className={recoveredPHPercentVisibility ? 'text-sm' : 'invisible'}
+          >
+            ({recoveredPHPercent}%)
+          </span>
         </div>
         <div className="md:w-1/3 flex-1 box p-3 md:p-5 bg-red-500 rounded-lg mx-2 mb-3 md:mb-0 shadow">
           <p className="py-2 text-xl">Deaths</p>
-          <span className="text-4xl leading-normal block">{deathsPH}</span>
-          <span className="text-sm">({deathsPHPercent}%)</span>
+          <span className="text-4xl leading-normal block">
+            {
+              <Count
+                end={deathsPH}
+                onEnd={() => setDeathsPHPercentVisibility(true)}
+              />
+            }
+          </span>
+          <span className={deathsPHPercentVisibility ? 'text-sm' : 'invisible'}>
+            ({deathsPHPercent}%)
+          </span>
         </div>
       </div>
 
@@ -120,12 +161,12 @@ const App = () => {
                 backgroundColor: ['#f7fafc', '#3182ce', '#f56565'],
                 borderWidth: 1,
                 hoverBorderColor: '#000',
-                data: [confirmedPH, recoveredPH, deathsPH]
-              }
-            ]
+                data: [confirmedPH, recoveredPH, deathsPH],
+              },
+            ],
           }}
           legend={{
-            display: false
+            display: false,
           }}
         ></Bar>
       </div>
@@ -136,18 +177,25 @@ const App = () => {
           <p className="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b">
             Cases
           </p>
-          <span className="text-2xl">
-            {new Intl.NumberFormat().format(confirmedGlobal)}
-          </span>
+          <span className="text-2xl">{<Count end={confirmedGlobal} />}</span>
         </div>
         <div className="md:w-1/3 py-4 md:py-0 border-b border-yellow-300 md:border-b-0">
           <p className="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b">
             Recovered
           </p>
           <span className="text-2xl block">
-            {new Intl.NumberFormat().format(recoveredGlobal)}
+            {
+              <Count
+                end={recoveredGlobal}
+                onEnd={() => setRecoveredGlobalVisibility(true)}
+              />
+            }
           </span>
-          <span className="text-xs text-gray-500">
+          <span
+            className={
+              recoveredGlobalVisibility ? 'text-xs text-gray-500' : 'hidden'
+            }
+          >
             ({recoveredGlobalPercent}%)
           </span>
         </div>
@@ -156,9 +204,18 @@ const App = () => {
             Deaths
           </p>
           <span className="text-2xl block">
-            {new Intl.NumberFormat().format(deathsGlobal)}
+            {
+              <Count
+                end={deathsGlobal}
+                onEnd={() => setDeathGlobalVisibility(true)}
+              />
+            }
           </span>
-          <span className="text-xs text-gray-500">
+          <span
+            className={
+              deathGlobalVisibility ? 'text-xs text-gray-500' : 'invisible'
+            }
+          >
             ({deathsGlobalPercent}%)
           </span>
         </div>
@@ -186,17 +243,20 @@ const App = () => {
                 backgroundColor: ['#fefcbf', '#fefcbf', '#fefcbf'],
                 borderWidth: 1,
                 hoverBorderColor: '#000',
-                data: [confirmedGlobal, recoveredGlobal, deathsGlobal]
-              }
-            ]
+                data: [confirmedGlobal, recoveredGlobal, deathsGlobal],
+              },
+            ],
           }}
           legend={{
-            display: false
+            display: false,
           }}
         ></Bar>
       </div>
 
-      <p className="mt-10 text-sm">Last update {update}</p>
+      <p className="mt-10 text-sm">
+        Last update{' '}
+        <ReactTimeAgo date={new Date(update.substr(0, update.length - 5))} />
+      </p>
 
       <div className="mt-10 md:mt-10 text-3xl">Laban Pilipinas! 💪</div>
 
