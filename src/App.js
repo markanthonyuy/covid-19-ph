@@ -255,10 +255,18 @@ const App = () => {
 
       <p className="mt-10 text-sm">
         Last update{' '}
-        <ReactTimeAgo date={new Date(update.substr(0, update.length - 5))} />
+        <ReactTimeAgo
+          date={new Date(update.substr(0, update.length - 5)).getTime()}
+          live="false"
+        />
       </p>
 
-      <div className="mt-10 md:mt-10 text-3xl">Laban Pilipinas! 💪</div>
+      <div className="mt-10 md:mt-10 text-3xl">
+        Laban Pilipinas!{' '}
+        <span role="img" aria-label="strong">
+          💪
+        </span>
+      </div>
 
       <footer className="w-full p-3 text-center">
         <p className="flex flex-col md:flex-row justify-center items-center leading-tight text-xs">
