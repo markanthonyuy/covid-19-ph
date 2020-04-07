@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Bar } from 'react-chartjs-2'
 import './App.css'
+import './css/tw.css'
 import bacteria from './bacteria.svg'
 import CountUp from 'react-countup'
 import ReactTimeAgo from 'react-timeago'
@@ -254,7 +255,7 @@ const App = () => {
       </div>
 
       <p className="mt-10 text-sm">
-        Last update{' '}
+        Last update was{' '}
         <ReactTimeAgo
           date={new Date(update.substr(0, update.length - 5)).getTime()}
           live="false"
