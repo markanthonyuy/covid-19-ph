@@ -55,6 +55,7 @@ legend {
 
 h1,
 h2,
+h3,
 p {
   margin: 0;
 }
@@ -83,7 +84,8 @@ button {
   cursor: pointer;
 }
 h1,
-h2 {
+h2,
+h3 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -166,12 +168,19 @@ img {
 .leading-normal {
   line-height: 1.5;
 }
+.leading-relaxed {
+  line-height: 1.625;
+}
 .m-auto {
   margin: auto;
 }
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .my-6 {
   margin-top: 1.5rem;
@@ -189,6 +198,12 @@ img {
 }
 .mb-3 {
   margin-bottom: 0.75rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
 }
 .mt-5 {
   margin-top: 1.25rem;
@@ -208,6 +223,9 @@ img {
 .p-5 {
   padding: 1.25rem;
 }
+.p-6 {
+  padding: 1.5rem;
+}
 .p-10 {
   padding: 2.5rem;
 }
@@ -226,14 +244,30 @@ img {
 .shadow {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.text-left {
+  text-align: left;
+}
 .text-center {
   text-align: center;
+}
+.text-right {
+  text-align: right;
 }
 .text-white {
   color: #fff;
 }
 .text-gray-500 {
   color: #a0aec0;
+}
+.text-gray-600 {
+  color: #718096;
+}
+.text-gray-800 {
+  color: #2d3748;
 }
 .text-blue-500 {
   color: #4299e1;
@@ -258,6 +292,9 @@ img {
 }
 .text-5xl {
   font-size: 3rem;
+}
+.italic {
+  font-style: italic;
 }
 .invisible {
   visibility: hidden;
@@ -287,6 +324,10 @@ img {
   .md\:my-2 {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+  }
+  .md\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
   }
   .md\:mb-0 {
     margin-bottom: 0;

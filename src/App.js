@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Bar } from 'react-chartjs-2'
 import './App.css'
 import './css/tw.css'
-import Count from './components/Count'
 import Box from './components/Box'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -196,13 +194,75 @@ const App = () => {
         deathsValue={deathsGlobal}
       />
 
-      <p className="mt-10 text-sm">
+      <p className="mt-4 text-sm">
         Last update was{' '}
         <ReactTimeAgo
           date={new Date(update.substr(0, update.length - 5)).getTime()}
           live="false"
         />
       </p>
+
+      <h2 className="md:w-2/3 py-4 mt-4 mx-auto text-2xl">
+        Basic Protective Measures
+      </h2>
+      <div className="md:w-2/3 text-left p-6 mx-4 md:mx-auto shadow-md bg-gray-100 rounded-lg">
+        <h3 className="text-xl mb-2 text-gray-800 leading-relaxed">
+          Wash your hands frequently
+        </h3>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+          Regularly and thoroughly clean your hands with an alcohol-based hand
+          rub or wash them with soap and water.
+        </p>
+        <h3 className="text-xl mb-2 text-gray-800 leading-relaxed">
+          Maintain social distancing
+        </h3>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+          Maintain at least 1 metre (3 feet) distance between yourself and
+          anyone who is coughing or sneezing.
+        </p>
+        <h3 className="text-xl mb-2 text-gray-800 leading-relaxed">
+          Avoid touching eyes, nose and mouth
+        </h3>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+          Hands touch many surfaces and can pick up viruses. Once contaminated,
+          hands can transfer the virus to your eyes, nose or mouth. From there,
+          the virus can enter your body and can make you sick.
+        </p>
+        <h3 className="text-xl mb-2 text-gray-800 leading-relaxed">
+          Practice respiratory hygiene
+        </h3>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+          Make sure you, and the people around you, follow good respiratory
+          hygiene. This means covering your mouth and nose with your bent elbow
+          or tissue when you cough or sneeze. Then dispose of the used tissue
+          immediately.
+        </p>
+        <h3 className="text-xl mb-2 text-gray-800 leading-relaxed">
+          If you have fever, cough and difficulty breathing, seek medical care
+          early
+        </h3>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+          Stay home if you feel unwell. If you have a fever, cough and
+          difficulty breathing, seek medical attention and call in advance.
+          Follow the directions of your local health authority.
+        </p>
+        <h3 className="text-xl mb-2 text-gray-800 leading-relaxed">
+          Stay informed and follow advice given by your healthcare provider
+        </h3>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+          Stay informed on the latest developments about COVID-19. Follow advice
+          given by your healthcare provider, your national and local public
+          health authority or your employer on how to protect yourself and
+          others from COVID-19.
+        </p>
+        <p className="text-xs text-right text-gray-500 italic">
+          Source{' '}
+          <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public">
+            {' '}
+            WHO website
+          </a>
+        </p>
+      </div>
 
       <div className="mt-10 md:mt-10 text-3xl">
         Laban Pilipinas!{' '}
