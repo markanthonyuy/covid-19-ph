@@ -3,7 +3,7 @@ const TailwindExtractor = (content) => {
 }
 
 module.exports = {
-  content: ['App.js'],
+  content: ['App.js', 'components/*'],
   css: ['tw.css'],
   extractors: [
     {
