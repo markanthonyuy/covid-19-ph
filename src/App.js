@@ -268,6 +268,11 @@ const App = () => {
       </p>
 
       <div className="mt-10 md:mt-10 text-3xl">
+        Stay Home{' '}
+        <span role="img" aria-label="home">
+          🏡
+        </span>
+        <br />
         Laban Pilipinas!{' '}
         <span role="img" aria-label="strong">
           💪
