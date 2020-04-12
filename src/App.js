@@ -269,7 +269,7 @@ const App = () => {
       </p>
 
       <h2 className="md:w-2/3 py-4 mt-4 mx-auto text-2xl">
-        Get The Latest Covid 19 News
+        Get The Latest Philippines Covid 19 News
       </h2>
       <div className="tweets p-4 md:flex md:justify-around mx-auto">
         <div className="tweet w-2/3 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
