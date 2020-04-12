@@ -17,7 +17,7 @@ const Footer = () => {
         <span className="p-1">
           {'</>'} by{' '}
           <a href="https://markanthonyuy.com" className="text-blue-500">
-            markanthonyuy
+            Mark Anthony Uy
           </a>{' '}
         </span>
         <span className="p-1">

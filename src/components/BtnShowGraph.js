@@ -1,9 +1,10 @@
 import React from 'react'
 import { Bar } from 'react-chartjs-2'
+import Fade from 'react-reveal/Fade'
 
 const BtnShowGraph = (props) => {
   return (
-    <React.Fragment>
+    <Fade delay={300}>
       <button
         className="btn-apply m-auto my-6 bg-green-400 py-2 text-sm text-white px-6 rounded shadow"
         onClick={props.clickFn}
@@ -42,7 +43,7 @@ const BtnShowGraph = (props) => {
           }}
         ></Bar>
       </div>
-    </React.Fragment>
+    </Fade>
   )
 }
 
