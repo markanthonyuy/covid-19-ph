@@ -4,7 +4,7 @@ import Fade from 'react-reveal/Fade'
 
 const Box = (props) => {
   return (
-    <Fade delay={300}>
+    <Fade delay={props.delay}>
       <div className={props.classNameBox}>
         <p className={props.classNameBoxTitle}>{props.title}</p>
         <span className={props.classNameCount}>

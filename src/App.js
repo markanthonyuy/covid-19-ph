@@ -13,6 +13,7 @@ import FLU_MASK from './img/flu-mask.svg'
 import HEALTHCARE from './img/healthcare.svg'
 import NEWS from './img/news.svg'
 import SOCIAL_DISTANCING from './img/social-distancing.svg'
+import Fade from 'react-reveal/Fade'
 import { TwitterTimelineEmbed } from 'react-twitter-embed'
 
 const API_ENDPOINT = 'https://covid19.mathdro.id/api/'
@@ -110,6 +111,7 @@ const App = () => {
           classNameCount="text-4xl leading-normal block"
           title="Cases"
           count={confirmedPH}
+          delay="300"
         />
 
         <Box
@@ -124,6 +126,7 @@ const App = () => {
             recoveredPHPercentVisibility ? 'text-sm' : 'invisible'
           }
           percentValue={recoveredPHPercent}
+          delay="500"
         />
 
         <Box
@@ -138,6 +141,7 @@ const App = () => {
             recoveredPHPercentVisibility ? 'text-sm' : 'invisible'
           }
           percentValue={deathsPHPercent}
+          delay="700"
         />
       </div>
 
@@ -150,6 +154,7 @@ const App = () => {
         casesValue={confirmedPH}
         recoveredValue={recoveredPH}
         deathsValue={deathsPH}
+        delay="300"
       />
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
@@ -174,6 +179,7 @@ const App = () => {
             recoveredGlobalVisibility ? 'text-xs text-gray-500' : 'invisible'
           }
           percentValue={recoveredGlobalPercent}
+          delay="500"
         />
 
         <Box
@@ -188,6 +194,7 @@ const App = () => {
             deathGlobalVisibility ? 'text-xs text-gray-500' : 'invisible'
           }
           percentValue={deathsGlobalPercent}
+          delay="700"
         />
       </div>
 
@@ -272,27 +279,33 @@ const App = () => {
         Get The Latest Philippines Covid 19 News
       </h2>
       <div className="tweets p-4 md:flex md:justify-around mx-auto">
-        <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
-          <TwitterTimelineEmbed
-            sourceType="profile"
-            screenName="DOHgovph"
-            options={{ height: 500 }}
-          />
-        </div>
-        <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
-          <TwitterTimelineEmbed
-            sourceType="profile"
-            screenName="WHOPhilippines"
-            options={{ height: 500 }}
-          />
-        </div>
-        <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
-          <TwitterTimelineEmbed
-            sourceType="profile"
-            screenName="Covid19Ph"
-            options={{ height: 500 }}
-          />
-        </div>
+        <Fade delay={300}>
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+            <TwitterTimelineEmbed
+              sourceType="profile"
+              screenName="DOHgovph"
+              options={{ height: 500 }}
+            />
+          </div>
+        </Fade>
+        <Fade delay={500}>
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+            <TwitterTimelineEmbed
+              sourceType="profile"
+              screenName="WHOPhilippines"
+              options={{ height: 500 }}
+            />
+          </div>
+        </Fade>
+        <Fade delay={700}>
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+            <TwitterTimelineEmbed
+              sourceType="profile"
+              screenName="Covid19Ph"
+              options={{ height: 500 }}
+            />
+          </div>
+        </Fade>
       </div>
 
       <div className="mt-10 md:mt-10 text-3xl">
