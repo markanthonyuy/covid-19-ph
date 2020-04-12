@@ -16,6 +16,10 @@
   height: 165px;
 }
 
+.tweets {
+  max-width: 1200px;
+}
+
 .logo {
   animation: 5s rotate linear infinite;
 }

@@ -13,6 +13,7 @@ import FLU_MASK from './img/flu-mask.svg'
 import HEALTHCARE from './img/healthcare.svg'
 import NEWS from './img/news.svg'
 import SOCIAL_DISTANCING from './img/social-distancing.svg'
+import { TwitterTimelineEmbed } from 'react-twitter-embed'
 
 const API_ENDPOINT = 'https://covid19.mathdro.id/api/'
 
@@ -266,6 +267,30 @@ const App = () => {
           WHO website
         </a>
       </p>
+
+      <div className="tweets p-4 mt-6 md:flex md:justify-around mx-auto">
+        <div className="tweet w-2/3 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+          <TwitterTimelineEmbed
+            sourceType="profile"
+            screenName="DOHgovph"
+            options={{ height: 600 }}
+          />
+        </div>
+        <div className="tweet w-2/3 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+          <TwitterTimelineEmbed
+            sourceType="profile"
+            screenName="WHOPhilippines"
+            options={{ height: 600 }}
+          />
+        </div>
+        <div className="tweet w-2/3 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+          <TwitterTimelineEmbed
+            sourceType="profile"
+            screenName="Covid19Ph"
+            options={{ height: 600 }}
+          />
+        </div>
+      </div>
 
       <div className="mt-10 md:mt-10 text-3xl">
         Stay Home{' '}
