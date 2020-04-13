@@ -1,0 +1,7 @@
+export { default as Header } from './Header'
+export { default as Footer } from './Footer'
+export { default as Box } from './Box'
+export { default as Count } from './Count'
+export { default as Tip } from './Tip'
+export { default as BtnShowGraph } from './BtnShowGraph'
+export { default as Hotlines } from './Hotlines'

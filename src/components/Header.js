@@ -1,5 +1,5 @@
 import React from 'react'
-import bacteria from '../img/bacteria.svg'
+import bacteria from '../images/bacteria.svg'
 
 const Header = () => {
   return (

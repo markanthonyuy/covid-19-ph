@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import './App.css'
+import './css/App.css'
 import './css/tw.css'
-import Box from './components/Box'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import BtnShowGraph from './components/BtnShowGraph'
-import Tip from './components/Tip'
 import ReactTimeAgo from 'react-timeago'
-import CLEAN_HANDS from './img/clean-hands.svg'
-import DOCTOR from './img/doctor.svg'
-import FLU_MASK from './img/flu-mask.svg'
-import HEALTHCARE from './img/healthcare.svg'
-import NEWS from './img/news.svg'
-import SOCIAL_DISTANCING from './img/social-distancing.svg'
 import Fade from 'react-reveal/Fade'
 import { TwitterTimelineEmbed } from 'react-twitter-embed'
+import { Box, Header, Footer, BtnShowGraph, Tip, Hotlines } from './components'
+import {
+  CLEAN_HANDS,
+  DOCTOR,
+  FLU_MASK,
+  HEALTHCARE,
+  NEWS,
+  SOCIAL_DISTANCING,
+  FLAG_PH,
+} from './images'
 
-const API_ENDPOINT = 'https://covid19.mathdro.id/api/'
+import API from './api'
 
 const App = () => {
   const [confirmedPH, setConfirmedPH] = useState(0)
@@ -51,37 +50,27 @@ const App = () => {
   const [chartPH, setChartPH] = useState(false)
   const [chartGlobal, setChartGlobal] = useState(false)
 
-  const getPHData = () => {
-    fetch(`${API_ENDPOINT}countries/ph/`)
-      .then((res) => res.json())
-      .then((res) => {
-        setConfirmedPH(res.confirmed.value)
-        setRecoveredPH(res.recovered.value)
-        setDeathsPH(res.deaths.value)
-        setDeathsPHPercent(
-          ((res.deaths.value / res.confirmed.value) * 100).toFixed(2)
-        )
-        setRecoveredPHPercent(
-          ((res.recovered.value / res.confirmed.value) * 100).toFixed(2)
-        )
-      })
+  const getPHData = async () => {
+    await API.phData().then((res) => {
+      setConfirmedPH(res.confirmed)
+      setRecoveredPH(res.recovered)
+      setDeathsPH(res.deaths)
+      setDeathsPHPercent(((res.deaths / res.confirmed) * 100).toFixed(2))
+      setRecoveredPHPercent(((res.recovered / res.confirmed) * 100).toFixed(2))
+    })
   }
 
-  const getGlobalData = () => {
-    fetch(API_ENDPOINT)
-      .then((res) => res.json())
-      .then((res) => {
-        setConfirmedGlobal(res.confirmed.value)
-        setRecoveredGlobal(res.recovered.value)
-        setDeathsGlobal(res.deaths.value)
-        setUpdate(res.lastUpdate)
-        setDeathsGlobalPercent(
-          ((res.deaths.value / res.confirmed.value) * 100).toFixed(2)
-        )
-        setRecoveredGlobalPercent(
-          ((res.recovered.value / res.confirmed.value) * 100).toFixed(2)
-        )
-      })
+  const getGlobalData = async () => {
+    await API.globalData().then((res) => {
+      setConfirmedGlobal(res.confirmed)
+      setRecoveredGlobal(res.recovered)
+      setDeathsGlobal(res.deaths)
+      setUpdate(res.lastUpdate)
+      setDeathsGlobalPercent(((res.deaths / res.confirmed) * 100).toFixed(2))
+      setRecoveredGlobalPercent(
+        ((res.recovered / res.confirmed) * 100).toFixed(2)
+      )
+    })
   }
 
   useEffect(() => {
@@ -97,12 +86,7 @@ const App = () => {
 
       <h2 className="text-4xl p-5">
         Philippines{' '}
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg"
-          width="40"
-          className="inline mb-1"
-          alt=""
-        />
+        <img src={FLAG_PH} width="40" className="inline mb-1" alt="" />
       </h2>
       <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
         <Box
@@ -111,7 +95,7 @@ const App = () => {
           classNameCount="text-4xl leading-normal block"
           title="Cases"
           count={confirmedPH}
-          delay="300"
+          delay={300}
         />
 
         <Box
@@ -126,7 +110,7 @@ const App = () => {
             recoveredPHPercentVisibility ? 'text-sm' : 'invisible'
           }
           percentValue={recoveredPHPercent}
-          delay="500"
+          delay={500}
         />
 
         <Box
@@ -138,10 +122,10 @@ const App = () => {
           count={deathsPH}
           onEnd={() => setDeathsPHPercentVisibility(true)}
           percentVisibility={
-            recoveredPHPercentVisibility ? 'text-sm' : 'invisible'
+            deathsPHPercentVisibility ? 'text-sm' : 'invisible'
           }
           percentValue={deathsPHPercent}
-          delay="700"
+          delay={700}
         />
       </div>
 
@@ -154,7 +138,7 @@ const App = () => {
         casesValue={confirmedPH}
         recoveredValue={recoveredPH}
         deathsValue={deathsPH}
-        delay="300"
+        delay={300}
       />
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
@@ -179,7 +163,7 @@ const App = () => {
             recoveredGlobalVisibility ? 'text-xs text-gray-500' : 'invisible'
           }
           percentValue={recoveredGlobalPercent}
-          delay="500"
+          delay={500}
         />
 
         <Box
@@ -194,7 +178,7 @@ const App = () => {
             deathGlobalVisibility ? 'text-xs text-gray-500' : 'invisible'
           }
           percentValue={deathsGlobalPercent}
-          delay="700"
+          delay={700}
         />
       </div>
 
@@ -281,135 +265,7 @@ const App = () => {
 
       <div className="px-2 mt-4">
         <Fade delay={300}>
-          <table className="table-auto mx-auto shadow-md rounded-b-md">
-            <colgroup>
-              <col width="60%" />
-              <col width="40%" />
-            </colgroup>
-            <thead>
-              <tr className="bg-gray-200">
-                <th class="border-b px-2 md:px-4 py-4 font-medium text-left rounded-tl-md text-sm md:text-base">
-                  Department
-                </th>
-                <th class="border-b border-l px-2 md:px-4 py-4 font-medium rounded-tr-md text-sm md:text-base">
-                  Contact Number
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
-                  DILG / DOH
-                </td>
-                <td class="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-                  <a href="tel:+63289426843" className="text-blue-400">
-                    (02) 894-26843
-                  </a>
-                  <br />
-                  <span className="text-xs">(02) 894-COVID</span>
-                </td>
-              </tr>
-              <tr className="bg-gray-100">
-                <td class="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
-                  RITM{' '}
-                  <span className="text-xs">
-                    (RESEARCH INSTITUTE FOR TROPICAL MEDICINE)
-                  </span>
-                </td>
-                <td class="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-                  <a href="tel:+63288072628" className="text-blue-400">
-                    (02) 880-72628
-                  </a>
-                  <br />
-                  <a href="tel:+63288072629" className="text-blue-400">
-                    (02) 880-72629
-                  </a>
-                  <br />
-                  <a href="tel:+63288072630" className="text-blue-400">
-                    (02) 880-72630
-                  </a>
-                  <br />
-                  <a href="tel:+63288072631" className="text-blue-400">
-                    (02) 880-72631
-                  </a>
-                  <br />
-                  <a href="tel:+63288072632" className="text-blue-400">
-                    (02) 880-72632
-                  </a>
-                  <br />
-                  <a href="tel:+63288072637" className="text-blue-400">
-                    (02) 880-72637
-                  </a>
-                  <br />
-                  <span className="text-xs">local 297 / 440 / 441</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
-                  RITM LABORATORY CONFIRMATION RESULT
-                </td>
-                <td class="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-                  <a href="tel:+639199279180" className="text-blue-400">
-                    (63) 919 927-9180
-                  </a>
-                  <br />
-                  <a href="tel:+639199279204" className="text-blue-400">
-                    (63) 919 927-9204
-                  </a>
-                </td>
-              </tr>
-              <tr className="bg-gray-100">
-                <td class="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
-                  EMERGENCY HOTLINE
-                </td>
-                <td class="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-                  <a href="tel:911" className="text-blue-400">
-                    911
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
-                  PRESIDENTIAL COMPLAINT CENTER
-                </td>
-                <td class="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-                  <a href="tel:8888" className="text-blue-400">
-                    8888
-                  </a>
-                </td>
-              </tr>
-              <tr className="bg-gray-100">
-                <td class="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
-                  SMART, PLDT, SUN and TNT
-                </td>
-                <td class="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-                  <a href="tel:1555" className="text-blue-400">
-                    1555
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
-                  PHILIPPINE NATIONAL RED CROSS
-                </td>
-                <td class="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-                  <a href="tel:143" className="text-blue-400">
-                    143
-                  </a>
-                </td>
-              </tr>
-              <tr className="bg-gray-100">
-                <td class="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base rounded-b-md">
-                  RED CROSS EMERGENCY RESPONSE UNIT
-                </td>
-                <td class="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base rounded-b-md">
-                  <a href="tel:+63287902300" className="text-blue-400">
-                    (02) 879-02300
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <Hotlines />
         </Fade>
       </div>
 
