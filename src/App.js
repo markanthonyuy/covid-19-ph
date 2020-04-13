@@ -279,19 +279,19 @@ const App = () => {
         Philippines Covid 19 Hotlines
       </h2>
 
-      <Fade delay={300}>
-        <div className="px-2">
-          <table class="table-auto mx-auto shadow-md rounded-b-md">
+      <div className="px-2 mt-4">
+        <Fade delay={300}>
+          <table className="table-auto mx-auto shadow-md rounded-b-md">
             <colgroup>
               <col width="60%" />
               <col width="40%" />
             </colgroup>
             <thead>
               <tr className="bg-gray-200">
-                <th class="border-b px-4 py-4 font-medium text-left rounded-tl-md">
+                <th class="border-b px-2 md:px-4 py-4 font-medium text-left rounded-tl-md text-sm md:text-base">
                   Department
                 </th>
-                <th class="border-b border-l px-4 py-4 font-medium rounded-tr-md">
+                <th class="border-b border-l px-2 md:px-4 py-4 font-medium rounded-tr-md text-sm md:text-base">
                   Contact Number
                 </th>
               </tr>
@@ -410,8 +410,8 @@ const App = () => {
               </tr>
             </tbody>
           </table>
-        </div>
-      </Fade>
+        </Fade>
+      </div>
 
       <h2 className="md:w-2/3 py-4 px-2 mt-10 mx-auto text-2xl">
         Get The Latest Philippines Covid 19 News
