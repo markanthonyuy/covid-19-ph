@@ -149,7 +149,7 @@ const App = () => {
           classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
           classNameBoxTitle="text-xl"
           classNameCount="text-5xl leading-normal block text-yellow-600"
-          title="Active Case"
+          title="Active Cases"
           count={activePH}
           onEnd={() => setActivePHPercentVisibility(true)}
           percentVisibility={
@@ -219,7 +219,7 @@ const App = () => {
           classNameBox="bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0"
           classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
           classNameCount="text-2xl mb-1 block text-yellow-600"
-          title="Active Case"
+          title="Active Cases"
           count={activeGlobal}
           onEnd={() => setActiveGlobalVisibility(true)}
           percentVisibility={
