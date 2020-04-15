@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hotlines = () => {
   return (
-    <table className="table-auto mx-auto shadow-md rounded-b-md">
+    <table className="table-auto mx-auto shadow rounded-b-md">
       <colgroup>
         <col width="60%" />
         <col width="40%" />

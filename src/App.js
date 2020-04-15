@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './css/App.css'
-import './tw.css'
+import './css/tw.css'
 import ReactTimeAgo from 'react-timeago'
 import Fade from 'react-reveal/Fade'
 import { TwitterTimelineEmbed } from 'react-twitter-embed'
@@ -90,7 +90,7 @@ const App = () => {
       </h2>
       <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
         <Box
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow-md"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-0 md:mr-2 mb-3 md:mb-0 shadow"
           classNameBoxTitle="text-xl"
           classNameCount="text-5xl leading-normal block"
           title="Cases"
@@ -100,8 +100,8 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow-md"
-          classNameBoxTitle="text-xl text-green-700"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-0 md:mx-1 mb-3 md:mb-0 shadow"
+          classNameBoxTitle="text-xl"
           classNameCount="text-5xl leading-normal block text-green-700"
           title="Recovered"
           count={recoveredPH}
@@ -115,8 +115,8 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow-md"
-          classNameBoxTitle="text-xl text-red-600"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-0 md:ml-2 mb-3 md:mb-0 shadow"
+          classNameBoxTitle="text-xl"
           classNameCount="text-5xl leading-normal block text-red-600"
           title="Deaths"
           count={deathsPH}
@@ -141,11 +141,11 @@ const App = () => {
       />
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
-      <div className="body md:flex justify-center bg-white md:pb-3 shadow-md">
+      <div className="body md:flex justify-center bg-white md:pb-3 rounded-md w-5/6 lg:w-3/4 mx-auto shadow">
         <Box
-          classNameBox="md:w-1/3 py-4 md:py-0 border-b border-yellow-300 md:border-b-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b"
-          classNameCount="text-2xl"
+          classNameBox="md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
+          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b mb-2"
+          classNameCount="text-2xl mb-1"
           title="Cases"
           count={confirmedGlobal}
           delay={100}
@@ -153,9 +153,9 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 py-4 md:py-0 border-b border-yellow-300 md:border-b-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b"
-          classNameCount="text-2xl block"
+          classNameBox="md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
+          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b mb-2"
+          classNameCount="text-2xl mb-1 block text-green-700"
           title="Recovered"
           count={recoveredGlobal}
           onEnd={() => setRecoveredGlobalVisibility(true)}
@@ -169,8 +169,8 @@ const App = () => {
         <Box
           hasPercent
           classNameBox="md:w-1/3 py-4 md:py-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b"
-          classNameCount="text-2xl block"
+          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b mb-2"
+          classNameCount="text-2xl mb-1 block text-red-600"
           title="Deaths"
           count={deathsGlobal}
           onEnd={() => setDeathGlobalVisibility(true)}
@@ -204,7 +204,7 @@ const App = () => {
       <h2 className="md:w-2/3 py-4 mt-4 mx-auto text-2xl">
         Basic Protective Measures
       </h2>
-      <div className="md:w-2/3 text-left p-6 py-8 mx-4 md:mx-auto shadow-md bg-white rounded-lg">
+      <div className="md:w-2/3 text-left p-6 py-8 mx-4 md:mx-auto shadow bg-white rounded-lg">
         <Tip
           image={CLEAN_HANDS}
           title="Wash your hands frequently"
@@ -274,7 +274,7 @@ const App = () => {
       </h2>
       <div className="tweets p-4 md:flex md:justify-around mx-auto">
         <Fade delay={100}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow-md">
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="DOHgovph"
@@ -283,7 +283,7 @@ const App = () => {
           </div>
         </Fade>
         <Fade delay={200}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow-md">
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="WHOPhilippines"
@@ -292,7 +292,7 @@ const App = () => {
           </div>
         </Fade>
         <Fade delay={300}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow-md">
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="Covid19Ph"
