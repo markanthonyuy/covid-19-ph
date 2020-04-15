@@ -363,9 +363,6 @@ img {
   .md\:border-b-0 {
     border-bottom-width: 0;
   }
-  .md\:border-b {
-    border-bottom-width: 1px;
-  }
   .md\:flex {
     display: flex;
   }
@@ -381,10 +378,6 @@ img {
   .md\:mx-1 {
     margin-left: 0.25rem;
     margin-right: 0.25rem;
-  }
-  .md\:my-2 {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
   }
   .md\:mx-2 {
     margin-left: 0.5rem;
@@ -426,8 +419,11 @@ img {
   .md\:pr-0 {
     padding-right: 0;
   }
-  .md\:pb-3 {
-    padding-bottom: 0.75rem;
+  .md\:pt-1 {
+    padding-top: 0.25rem;
+  }
+  .md\:pb-4 {
+    padding-bottom: 1rem;
   }
   .md\:text-left {
     text-align: left;

@@ -141,10 +141,10 @@ const App = () => {
       />
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
-      <div className="body md:flex justify-center bg-white md:pb-3 rounded-md w-5/6 lg:w-3/4 mx-auto shadow">
+      <div className="body md:flex justify-center bg-white md:pb-4 md:pt-1 rounded-md w-5/6 lg:w-3/4 mx-auto shadow">
         <Box
-          classNameBox="md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b mb-2"
+          classNameBox="special md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
+          classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
           classNameCount="text-2xl mb-1"
           title="Cases"
           count={confirmedGlobal}
@@ -154,7 +154,7 @@ const App = () => {
         <Box
           hasPercent
           classNameBox="md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b mb-2"
+          classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
           classNameCount="text-2xl mb-1 block text-green-700"
           title="Recovered"
           count={recoveredGlobal}
@@ -169,7 +169,7 @@ const App = () => {
         <Box
           hasPercent
           classNameBox="md:w-1/3 py-4 md:py-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b mb-2"
+          classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
           classNameCount="text-2xl mb-1 block text-red-600"
           title="Deaths"
           count={deathsGlobal}
