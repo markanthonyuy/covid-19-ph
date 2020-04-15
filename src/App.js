@@ -104,7 +104,7 @@ const App = () => {
         Philippines{' '}
         <img src={FLAG_PH} width="40" className="inline mb-1" alt="" />
       </h2>
-      <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
+      <div className="body w-5/6 md:w-11/12 lg:w-3/4 mx-auto md:flex justify-center items-center">
         <Box
           classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
           classNameBoxTitle="text-xl"
@@ -174,7 +174,7 @@ const App = () => {
       />
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
-      <div className="body md:flex justify-center md:pt-1 w-5/6 lg:w-3/4 mx-auto">
+      <div className="body md:flex justify-center md:pt-1 w-5/6 md:w-11/12 lg:w-3/4 mx-auto">
         <Box
           classNameBox="special bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
           classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"

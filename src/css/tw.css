@@ -200,10 +200,6 @@ img {
 .m-auto {
   margin: auto;
 }
-.mx-1 {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-}
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -442,6 +438,9 @@ img {
   }
   .md\:w-10\/12 {
     width: 83.333333%;
+  }
+  .md\:w-11\/12 {
+    width: 91.666667%;
   }
 }
 @media (min-width: 1024px) {
