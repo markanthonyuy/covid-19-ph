@@ -18,7 +18,7 @@ const Hotlines = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr className="bg-white">
           <td className="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
             DILG / DOH
           </td>
@@ -30,7 +30,7 @@ const Hotlines = () => {
             <span className="text-xs">(02) 894-COVID</span>
           </td>
         </tr>
-        <tr className="bg-gray-100">
+        <tr className="bg-white">
           <td className="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
             RITM{' '}
             <span className="text-xs">
@@ -65,7 +65,7 @@ const Hotlines = () => {
             <span className="text-xs">local 297 / 440 / 441</span>
           </td>
         </tr>
-        <tr>
+        <tr className="bg-white">
           <td className="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
             RITM LABORATORY CONFIRMATION RESULT
           </td>
@@ -79,7 +79,7 @@ const Hotlines = () => {
             </a>
           </td>
         </tr>
-        <tr className="bg-gray-100">
+        <tr className="bg-white">
           <td className="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
             EMERGENCY HOTLINE
           </td>
@@ -89,7 +89,7 @@ const Hotlines = () => {
             </a>
           </td>
         </tr>
-        <tr>
+        <tr className="bg-white">
           <td className="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
             PRESIDENTIAL COMPLAINT CENTER
           </td>
@@ -99,7 +99,7 @@ const Hotlines = () => {
             </a>
           </td>
         </tr>
-        <tr className="bg-gray-100">
+        <tr className="bg-white">
           <td className="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
             SMART, PLDT, SUN and TNT
           </td>
@@ -109,7 +109,7 @@ const Hotlines = () => {
             </a>
           </td>
         </tr>
-        <tr>
+        <tr className="bg-white">
           <td className="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base">
             PHILIPPINE NATIONAL RED CROSS
           </td>
@@ -119,7 +119,7 @@ const Hotlines = () => {
             </a>
           </td>
         </tr>
-        <tr className="bg-gray-100">
+        <tr className="bg-white">
           <td className="border-b px-2 md:px-4 py-2 text-left text-sm md:text-base rounded-b-md">
             RED CROSS EMERGENCY RESPONSE UNIT
           </td>

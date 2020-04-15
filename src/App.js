@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './css/App.css'
-import './css/tw.css'
+import './tw.css'
 import ReactTimeAgo from 'react-timeago'
 import Fade from 'react-reveal/Fade'
 import { TwitterTimelineEmbed } from 'react-twitter-embed'
@@ -84,71 +84,71 @@ const App = () => {
     <div className="App">
       <Header />
 
-      <h2 className="text-4xl p-5">
+      <h2 className="text-5xl p-5">
         Philippines{' '}
         <img src={FLAG_PH} width="40" className="inline mb-1" alt="" />
       </h2>
       <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
         <Box
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-gray-100 rounded-lg mx-2 mb-3 md:mb-0 shadow"
-          classNameBoxTitle="py-2 text-xl"
-          classNameCount="text-4xl leading-normal block"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow-md"
+          classNameBoxTitle="text-xl"
+          classNameCount="text-5xl leading-normal block"
           title="Cases"
           count={confirmedPH}
-          delay={300}
+          delay={100}
         />
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 box p-3 md:p-5 bg-blue-600 text-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
-          classNameBoxTitle="py-2 text-xl"
-          classNameCount="text-4xl leading-normal block"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow-md"
+          classNameBoxTitle="text-xl text-green-700"
+          classNameCount="text-5xl leading-normal block text-green-700"
           title="Recovered"
           count={recoveredPH}
           onEnd={() => setRecoveredPHPercentVisibility(true)}
           percentVisibility={
-            recoveredPHPercentVisibility ? 'text-sm' : 'invisible'
+            recoveredPHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={recoveredPHPercent}
-          delay={500}
+          delay={200}
         />
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 box p-3 md:p-5 bg-red-500 rounded-lg mx-2 mb-3 md:mb-0 shadow"
-          classNameBoxTitle="py-2 text-xl"
-          classNameCount="text-4xl leading-normal block"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow-md"
+          classNameBoxTitle="text-xl text-red-600"
+          classNameCount="text-5xl leading-normal block text-red-600"
           title="Deaths"
           count={deathsPH}
           onEnd={() => setDeathsPHPercentVisibility(true)}
           percentVisibility={
-            deathsPHPercentVisibility ? 'text-sm' : 'invisible'
+            deathsPHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={deathsPHPercent}
-          delay={700}
+          delay={300}
         />
       </div>
 
       <BtnShowGraph
         clickFn={() => setChartPH(!chartPH)}
         chartVisible={chartPH}
-        casesColor="#f7fafc"
-        recoveredColor="#3182ce"
-        deathsColor="#f56565"
+        casesColor="#fff"
+        recoveredColor="#52a571"
+        deathsColor="#e53e3e"
         casesValue={confirmedPH}
         recoveredValue={recoveredPH}
         deathsValue={deathsPH}
-        delay={300}
       />
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
-      <div className="body md:flex justify-center bg-yellow-200 md:pb-3">
+      <div className="body md:flex justify-center bg-white md:pb-3 shadow-md">
         <Box
           classNameBox="md:w-1/3 py-4 md:py-0 border-b border-yellow-300 md:border-b-0"
           classNameBoxTitle="md:w-2/3 mx-auto md:my-2 md:p-2 text-md md:border-b"
           classNameCount="text-2xl"
           title="Cases"
           count={confirmedGlobal}
+          delay={100}
         />
 
         <Box
@@ -160,10 +160,10 @@ const App = () => {
           count={recoveredGlobal}
           onEnd={() => setRecoveredGlobalVisibility(true)}
           percentVisibility={
-            recoveredGlobalVisibility ? 'text-xs text-gray-500' : 'invisible'
+            recoveredGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={recoveredGlobalPercent}
-          delay={500}
+          delay={200}
         />
 
         <Box
@@ -175,19 +175,19 @@ const App = () => {
           count={deathsGlobal}
           onEnd={() => setDeathGlobalVisibility(true)}
           percentVisibility={
-            deathGlobalVisibility ? 'text-xs text-gray-500' : 'invisible'
+            deathGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={deathsGlobalPercent}
-          delay={700}
+          delay={300}
         />
       </div>
 
       <BtnShowGraph
         clickFn={() => setChartGlobal(!chartGlobal)}
         chartVisible={chartGlobal}
-        casesColor="#fefcbf"
-        recoveredColor="#fefcbf"
-        deathsColor="#fefcbf"
+        casesColor="#fff"
+        recoveredColor="#52a571"
+        deathsColor="#e53e3e"
         casesValue={confirmedGlobal}
         recoveredValue={recoveredGlobal}
         deathsValue={deathsGlobal}
@@ -204,7 +204,7 @@ const App = () => {
       <h2 className="md:w-2/3 py-4 mt-4 mx-auto text-2xl">
         Basic Protective Measures
       </h2>
-      <div className="md:w-2/3 text-left p-6 py-8 mx-4 md:mx-auto shadow-md bg-gray-100 rounded-lg">
+      <div className="md:w-2/3 text-left p-6 py-8 mx-4 md:mx-auto shadow-md bg-white rounded-lg">
         <Tip
           image={CLEAN_HANDS}
           title="Wash your hands frequently"
@@ -264,7 +264,7 @@ const App = () => {
       </h2>
 
       <div className="px-2 mt-4">
-        <Fade delay={300}>
+        <Fade delay={100}>
           <Hotlines />
         </Fade>
       </div>
@@ -273,8 +273,8 @@ const App = () => {
         Get The Latest Philippines Covid 19 News
       </h2>
       <div className="tweets p-4 md:flex md:justify-around mx-auto">
-        <Fade delay={300}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+        <Fade delay={100}>
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow-md">
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="DOHgovph"
@@ -282,8 +282,8 @@ const App = () => {
             />
           </div>
         </Fade>
-        <Fade delay={500}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+        <Fade delay={200}>
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow-md">
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="WHOPhilippines"
@@ -291,8 +291,8 @@ const App = () => {
             />
           </div>
         </Fade>
-        <Fade delay={700}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0">
+        <Fade delay={300}>
+          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow-md">
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="Covid19Ph"

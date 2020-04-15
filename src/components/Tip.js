@@ -3,7 +3,7 @@ import Fade from 'react-reveal/Fade'
 
 const Tip = (props) => {
   return (
-    <Fade delay={300}>
+    <Fade delay={100}>
       <div className={props.last ? 'md:flex' : 'md:flex mb-6'}>
         <figure className="text-left md:w-2/12 lg:w-1/12 mr-4 flex justify-center items-start mb-2 md:mb-0 md:mt-2">
           <img src={props.image} alt={props.title} width="50" />

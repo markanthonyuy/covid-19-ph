@@ -4,9 +4,9 @@ import Fade from 'react-reveal/Fade'
 
 const BtnShowGraph = (props) => {
   return (
-    <Fade delay={300}>
+    <Fade delay={100}>
       <button
-        className="btn-apply m-auto my-6 bg-green-400 py-2 text-sm text-white px-6 rounded shadow"
+        className="btn-apply m-auto my-6 bg-blue-500 py-2 text-sm text-white px-6 rounded shadow"
         onClick={props.clickFn}
       >
         {props.chartVisible ? 'Hide' : 'Show'} Chart
