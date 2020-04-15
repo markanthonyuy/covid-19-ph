@@ -200,9 +200,13 @@ img {
 .m-auto {
   margin: auto;
 }
-.mx-0 {
-  margin-left: 0;
-  margin-right: 0;
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 .mx-4 {
   margin-left: 1rem;
@@ -317,6 +321,9 @@ img {
 .text-red-600 {
   color: #e53e3e;
 }
+.text-yellow-600 {
+  color: #d69e2e;
+}
 .text-green-700 {
   color: #2f855a;
 }
@@ -375,10 +382,6 @@ img {
   .md\:justify-around {
     justify-content: space-around;
   }
-  .md\:mx-1 {
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
-  }
   .md\:mx-2 {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -392,12 +395,6 @@ img {
   }
   .md\:mt-2 {
     margin-top: 0.5rem;
-  }
-  .md\:mr-2 {
-    margin-right: 0.5rem;
-  }
-  .md\:ml-2 {
-    margin-left: 0.5rem;
   }
   .md\:mt-10 {
     margin-top: 2.5rem;

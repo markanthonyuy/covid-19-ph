@@ -21,8 +21,10 @@ const App = () => {
   const [confirmedPH, setConfirmedPH] = useState(0)
   const [recoveredPH, setRecoveredPH] = useState(0)
   const [deathsPH, setDeathsPH] = useState(0)
+  const [activePH, setActivePH] = useState(0)
   const [deathsPHPercent, setDeathsPHPercent] = useState(0)
   const [recoveredPHPercent, setRecoveredPHPercent] = useState(0)
+  const [activePHPercent, setActivePHPercent] = useState(0)
 
   const [deathsPHPercentVisibility, setDeathsPHPercentVisibility] = useState(
     false
@@ -31,19 +33,25 @@ const App = () => {
     recoveredPHPercentVisibility,
     setRecoveredPHPercentVisibility,
   ] = useState(false)
+  const [activePHPercentVisibility, setActivePHPercentVisibility] = useState(
+    false
+  )
 
   const [confirmedGlobal, setConfirmedGlobal] = useState(0)
 
   const [recoveredGlobal, setRecoveredGlobal] = useState(0)
   const [deathsGlobal, setDeathsGlobal] = useState(0)
+  const [activeGlobal, setActiveGlobal] = useState(0)
 
   const [deathsGlobalPercent, setDeathsGlobalPercent] = useState(0)
   const [recoveredGlobalPercent, setRecoveredGlobalPercent] = useState(0)
+  const [activeGlobalPercent, setActiveGlobalPercent] = useState(0)
 
   const [deathGlobalVisibility, setDeathGlobalVisibility] = useState(false)
   const [recoveredGlobalVisibility, setRecoveredGlobalVisibility] = useState(
     false
   )
+  const [activeGlobalVisibility, setActiveGlobalVisibility] = useState(false)
 
   const [update, setUpdate] = useState('')
 
@@ -55,8 +63,12 @@ const App = () => {
       setConfirmedPH(res.confirmed)
       setRecoveredPH(res.recovered)
       setDeathsPH(res.deaths)
+      setActivePH(res.confirmed - (res.recovered + res.deaths))
       setDeathsPHPercent(((res.deaths / res.confirmed) * 100).toFixed(2))
       setRecoveredPHPercent(((res.recovered / res.confirmed) * 100).toFixed(2))
+      setActivePHPercent(
+        (100 - ((res.recovered + res.deaths) / res.confirmed) * 100).toFixed(2)
+      )
     })
   }
 
@@ -66,9 +78,13 @@ const App = () => {
       setRecoveredGlobal(res.recovered)
       setDeathsGlobal(res.deaths)
       setUpdate(res.lastUpdate)
+      setActiveGlobal(res.confirmed - (res.recovered + res.deaths))
       setDeathsGlobalPercent(((res.deaths / res.confirmed) * 100).toFixed(2))
       setRecoveredGlobalPercent(
         ((res.recovered / res.confirmed) * 100).toFixed(2)
+      )
+      setActiveGlobalPercent(
+        (100 - ((res.recovered + res.deaths) / res.confirmed) * 100).toFixed(2)
       )
     })
   }
@@ -90,7 +106,7 @@ const App = () => {
       </h2>
       <div className="body w-5/6 lg:w-3/4 mx-auto md:flex justify-center items-center">
         <Box
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-0 md:mr-2 mb-3 md:mb-0 shadow"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
           classNameBoxTitle="text-xl"
           classNameCount="text-5xl leading-normal block"
           title="Cases"
@@ -100,7 +116,7 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-0 md:mx-1 mb-3 md:mb-0 shadow"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
           classNameBoxTitle="text-xl"
           classNameCount="text-5xl leading-normal block text-green-700"
           title="Recovered"
@@ -115,7 +131,7 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-0 md:ml-2 mb-3 md:mb-0 shadow"
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
           classNameBoxTitle="text-xl"
           classNameCount="text-5xl leading-normal block text-red-600"
           title="Deaths"
@@ -127,23 +143,40 @@ const App = () => {
           percentValue={deathsPHPercent}
           delay={300}
         />
+
+        <Box
+          hasPercent
+          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
+          classNameBoxTitle="text-xl"
+          classNameCount="text-5xl leading-normal block text-yellow-600"
+          title="Active Case"
+          count={activePH}
+          onEnd={() => setActivePHPercentVisibility(true)}
+          percentVisibility={
+            activePHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
+          }
+          percentValue={activePHPercent}
+          delay={400}
+        />
       </div>
 
       <BtnShowGraph
         clickFn={() => setChartPH(!chartPH)}
         chartVisible={chartPH}
-        casesColor="#fff"
+        casesColor="#afb6c1"
         recoveredColor="#52a571"
         deathsColor="#e53e3e"
+        activeColor="#d69e2e"
         casesValue={confirmedPH}
         recoveredValue={recoveredPH}
         deathsValue={deathsPH}
+        activeValue={activePH}
       />
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
-      <div className="body md:flex justify-center bg-white md:pb-4 md:pt-1 rounded-md w-5/6 lg:w-3/4 mx-auto shadow">
+      <div className="body md:flex justify-center md:pt-1 w-5/6 lg:w-3/4 mx-auto">
         <Box
-          classNameBox="special md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
+          classNameBox="special bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
           classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
           classNameCount="text-2xl mb-1"
           title="Cases"
@@ -153,7 +186,7 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
+          classNameBox="bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
           classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
           classNameCount="text-2xl mb-1 block text-green-700"
           title="Recovered"
@@ -168,7 +201,7 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 py-4 md:py-0"
+          classNameBox="bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0"
           classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
           classNameCount="text-2xl mb-1 block text-red-600"
           title="Deaths"
@@ -180,17 +213,34 @@ const App = () => {
           percentValue={deathsGlobalPercent}
           delay={300}
         />
+
+        <Box
+          hasPercent
+          classNameBox="bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0"
+          classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
+          classNameCount="text-2xl mb-1 block text-yellow-600"
+          title="Active Case"
+          count={activeGlobal}
+          onEnd={() => setActiveGlobalVisibility(true)}
+          percentVisibility={
+            activeGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
+          }
+          percentValue={activeGlobalPercent}
+          delay={300}
+        />
       </div>
 
       <BtnShowGraph
         clickFn={() => setChartGlobal(!chartGlobal)}
         chartVisible={chartGlobal}
-        casesColor="#fff"
+        casesColor="#afb6c1"
         recoveredColor="#52a571"
         deathsColor="#e53e3e"
+        activeColor="#d69e2e"
         casesValue={confirmedGlobal}
         recoveredValue={recoveredGlobal}
         deathsValue={deathsGlobal}
+        activeValue={activeGlobal}
       />
 
       <p className="mt-4 text-sm">

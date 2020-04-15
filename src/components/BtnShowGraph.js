@@ -20,13 +20,14 @@ const BtnShowGraph = (props) => {
       >
         <Bar
           data={{
-            labels: ['Cases', 'Recovered', 'Deaths'],
+            labels: ['Cases', 'Recovered', 'Deaths', 'Active Case'],
             datasets: [
               {
                 backgroundColor: [
                   props.casesColor,
                   props.recoveredColor,
                   props.deathsColor,
+                  props.activeColor,
                 ],
                 borderWidth: 1,
                 hoverBorderColor: '#000',
@@ -34,6 +35,7 @@ const BtnShowGraph = (props) => {
                   props.casesValue,
                   props.recoveredValue,
                   props.deathsValue,
+                  props.activeValue,
                 ],
               },
             ],
