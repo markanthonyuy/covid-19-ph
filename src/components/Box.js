@@ -8,7 +8,7 @@ const Box = (props) => {
       <div className="md:float-left md:w-1/3 border-8 border-transparent">
         <div className="box shadow-md bg-white rounded-md box flex flex-col justify-center md:justify-start p-3 md:p-5 align-center">
           <p className="text-md">{props.title}</p>
-          <span className={props.classNameCount}>
+          <span className={`${props.classNameCount} font-medium`}>
             <Count end={props.count} onEnd={props.onEnd} />
           </span>
           {props.hasPercent && (

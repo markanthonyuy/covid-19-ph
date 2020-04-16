@@ -49,28 +49,33 @@ const App = () => {
   )
 
   // Global
+  const [testsGlobal, setTestsGlobal] = useState(0)
   const [confirmedGlobal, setConfirmedGlobal] = useState(0)
-
   const [recoveredGlobal, setRecoveredGlobal] = useState(0)
   const [deathsGlobal, setDeathsGlobal] = useState(0)
   const [activeGlobal, setActiveGlobal] = useState(0)
 
+  const [confirmedGlobalPercent, setConfirmedGlobalPercent] = useState(0)
   const [deathsGlobalPercent, setDeathsGlobalPercent] = useState(0)
   const [recoveredGlobalPercent, setRecoveredGlobalPercent] = useState(0)
   const [activeGlobalPercent, setActiveGlobalPercent] = useState(0)
 
+  const [confirmedGlobalVisibility, setConfirmedGlobalVisibility] = useState(
+    false
+  )
   const [deathGlobalVisibility, setDeathGlobalVisibility] = useState(false)
   const [recoveredGlobalVisibility, setRecoveredGlobalVisibility] = useState(
     false
   )
   const [activeGlobalVisibility, setActiveGlobalVisibility] = useState(false)
 
+  const [countriesAffected, setCountriesAffected] = useState(0)
   const [update, setUpdate] = useState('')
-
   const [chartPH, setChartPH] = useState(false)
   const [chartGlobal, setChartGlobal] = useState(false)
 
   const getPHData = async () => {
+    if (document.hidden) return
     await API.phDataComplete().then((res) => {
       setTestsPH(res.tests)
       setConfirmedPH(res.confirmed)
@@ -88,11 +93,14 @@ const App = () => {
   }
 
   const getGlobalData = async () => {
-    await API.globalData().then((res) => {
+    if (document.hidden) return
+    await API.phGlobalDataComplete().then((res) => {
+      setTestsGlobal(res.tests)
       setConfirmedGlobal(res.confirmed)
       setRecoveredGlobal(res.recovered)
       setDeathsGlobal(res.deaths)
       setActiveGlobal(res.confirmed - (res.recovered + res.deaths))
+      setConfirmedGlobalPercent(((res.confirmed / res.tests) * 100).toFixed(2))
       setDeathsGlobalPercent(((res.deaths / res.confirmed) * 100).toFixed(2))
       setRecoveredGlobalPercent(
         ((res.recovered / res.confirmed) * 100).toFixed(2)
@@ -100,14 +108,15 @@ const App = () => {
       setActiveGlobalPercent(
         (100 - ((res.recovered + res.deaths) / res.confirmed) * 100).toFixed(2)
       )
+      setCountriesAffected(res.affectedCountries)
     })
   }
 
   useEffect(() => {
     getPHData()
-    setInterval(getPHData, 3600000)
+    setInterval(getPHData, 300000)
     getGlobalData()
-    setInterval(getGlobalData, 3600000)
+    setInterval(getGlobalData, 300000)
   }, [])
 
   return (
@@ -118,11 +127,16 @@ const App = () => {
         Philippines{' '}
         <img src={FLAG_PH} width="40" className="inline mb-1" alt="" />
       </h2>
-      <h3 className="w-11/12 lg:w-5/6 mx-auto text-2xl p-2 text-left">
-        Today
-        <sup className="text-xs text-gray-500 ml-2">
-          {update && new Date(update).toLocaleDateString()}
-        </sup>
+      <h3 className="w-11/12 lg:w-5/6 mx-auto text-2xl p-2 clearfix text-left">
+        <span className="md:float-left text-left">
+          Today
+          <sup className="text-xs text-gray-500 ml-2">
+            {update && new Date(update).toLocaleDateString()}
+          </sup>
+        </span>
+        <p className="md:float-right text-sm mt-2 text-gray-500">
+          Last update was <ReactTimeAgo date={update} live="false" />
+        </p>
       </h3>
       <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
         <Box
@@ -146,7 +160,7 @@ const App = () => {
       <h3 className="w-11/12 lg:w-5/6 mx-auto text-2xl p-2 text-left">
         All Time
         <sup className="text-xs text-gray-500 ml-2">
-          Since day 1 of recorded confirm case
+          Since day 1 of recorded confirmed case
         </sup>
       </h3>
       <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
@@ -223,13 +237,31 @@ const App = () => {
         activeValue={activePH}
       />
 
-      <h2 className="text-xl mt-5 mb-2">Global</h2>
+      <h2 className="text-5xl mt-5 mb-2">Global</h2>
       <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
         <Box
+          classNameCount="text-3xl md:text-4xl leading-normal block text-purple-600"
+          title="Affected Countries"
+          count={countriesAffected}
+          delay={500}
+        />
+        <Box
+          classNameCount="text-3xl md:text-4xl leading-normal block text-blue-700"
+          title="Tests Conducted"
+          count={testsGlobal}
+          delay={100}
+        />
+        <Box
+          hasPercent
           classNameCount="text-3xl md:text-4xl leading-normal block"
           title="Confirmed Cases"
           count={confirmedGlobal}
-          delay={100}
+          onEnd={() => setConfirmedGlobalVisibility(true)}
+          percentVisibility={
+            confirmedGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
+          }
+          percentValue={confirmedGlobalPercent}
+          delay={200}
         />
 
         <Box
@@ -284,10 +316,6 @@ const App = () => {
         deathsValue={deathsGlobal}
         activeValue={activeGlobal}
       />
-
-      <p className="mt-4 text-sm">
-        Last update was <ReactTimeAgo date={update} live="false" />
-      </p>
 
       <h2 className="md:w-2/3 py-4 mt-4 mx-auto text-2xl">
         Basic Protective Measures

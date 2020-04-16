@@ -53,4 +53,25 @@ export const phDataComplete = async () => {
   }
 }
 
-export default { phData, globalData, phDataComplete }
+export const phGlobalDataComplete = async () => {
+  try {
+    const data = await fetch(
+      `${CORONA_LMAO_NINJA_API_ENDPOINT}all`
+    ).then((res) => res.json())
+    return {
+      confirmed: data.cases,
+      recovered: data.recovered,
+      deaths: data.deaths,
+      active: data.active,
+      todayCases: data.todayCases,
+      todayDeaths: data.todayDeaths,
+      tests: data.tests,
+      lastUpdate: data.updated,
+      affectedCountries: data.affectedCountries,
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export default { phData, globalData, phDataComplete, phGlobalDataComplete }
