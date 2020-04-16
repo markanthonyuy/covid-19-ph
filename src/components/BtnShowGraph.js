@@ -1,12 +1,12 @@
 import React from 'react'
-import { Bar } from 'react-chartjs-2'
+import { HorizontalBar, Line } from 'react-chartjs-2'
 import Fade from 'react-reveal/Fade'
 
 const BtnShowGraph = (props) => {
   return (
     <Fade delay={100}>
       <button
-        className="btn-apply m-auto my-6 bg-blue-500 py-2 text-sm text-white px-6 rounded shadow"
+        className="btn-apply mx-auto my-6 bg-blue-500 py-2 text-sm text-white px-6 rounded shadow"
         onClick={props.clickFn}
       >
         {props.chartVisible ? 'Hide' : 'Show'} Chart
@@ -14,16 +14,24 @@ const BtnShowGraph = (props) => {
       <div
         className={
           props.chartVisible
-            ? 'chart w-full md:w-2/4 lg:w-5/12 mx-auto mt-8 block'
-            : 'chart w-full md:w-2/4 lg:w-5/12 mx-auto mt-8 hidden'
+            ? 'chart w-full md:w-2/3 mx-auto mt-8 block'
+            : 'chart w-full md:w-2/3 mx-auto mt-8 hidden'
         }
       >
-        <Bar
+        <HorizontalBar
           data={{
-            labels: ['Cases', 'Recovered', 'Deaths', 'Active Case'],
+            labels: [
+              'Tests Conducted',
+              'Cases',
+              'Recovered',
+              'Deaths',
+              'Active Case',
+            ],
             datasets: [
               {
+                label: 'All Time',
                 backgroundColor: [
+                  props.testsColor,
                   props.casesColor,
                   props.recoveredColor,
                   props.deathsColor,
@@ -32,6 +40,7 @@ const BtnShowGraph = (props) => {
                 borderWidth: 1,
                 hoverBorderColor: '#000',
                 data: [
+                  props.testsValue,
                   props.casesValue,
                   props.recoveredValue,
                   props.deathsValue,
@@ -41,9 +50,84 @@ const BtnShowGraph = (props) => {
             ],
           }}
           legend={{
-            display: false,
+            display: true,
           }}
-        ></Bar>
+        ></HorizontalBar>
+      </div>
+      <div
+        className={
+          props.chartVisible
+            ? 'chart w-full md:w-2/3 mx-auto mt-8 block'
+            : 'chart w-full md:w-2/3 mx-auto mt-8 hidden'
+        }
+      >
+        <Line
+          legend={{ display: true }}
+          data={{
+            labels: props.lineCasesLabel,
+            datasets: [
+              {
+                label: 'Confirmed Cases',
+                backgroundColor: 'rgba(51, 51, 51, 0.2)',
+                borderColor: '#333',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(51, 51, 51, 0.4)',
+                hoverBorderColor: '#333',
+                data: props.lineCasesValue,
+              },
+            ],
+          }}
+        ></Line>
+      </div>
+      <div
+        className={
+          props.chartVisible
+            ? 'chart w-full md:w-2/3 mx-auto mt-8 block'
+            : 'chart w-full md:w-2/3 mx-auto mt-8 hidden'
+        }
+      >
+        <Line
+          legend={{ display: true }}
+          data={{
+            labels: props.lineRecoveredLabel,
+            datasets: [
+              {
+                label: 'Recovered Cases',
+                backgroundColor: 'rgba(47, 133, 90, 0.2)',
+                borderColor: '#2f855a',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(47, 133, 90, 0.4)',
+                hoverBorderColor: '#2f855a',
+                data: props.lineRecoveredValue,
+              },
+            ],
+          }}
+        ></Line>
+      </div>
+      <div
+        className={
+          props.chartVisible
+            ? 'chart w-full md:w-2/3 mx-auto mt-8 block'
+            : 'chart w-full md:w-2/3 mx-auto mt-8 hidden'
+        }
+      >
+        <Line
+          legend={{ display: true }}
+          data={{
+            labels: props.lineDeathsLabel,
+            datasets: [
+              {
+                label: 'Deaths Cases',
+                backgroundColor: 'rgba(229, 62, 62, 0.2)',
+                borderColor: '#e53e3e',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(229, 62, 62, 0.4)',
+                hoverBorderColor: '#e53e3e',
+                data: props.lineDeathsValue,
+              },
+            ],
+          }}
+        ></Line>
       </div>
     </Fade>
   )

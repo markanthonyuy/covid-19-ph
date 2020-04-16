@@ -47,6 +47,31 @@ const App = () => {
   const [activePHPercentVisibility, setActivePHPercentVisibility] = useState(
     false
   )
+  // Historical
+  const [
+    phHistoricalDataConfirmedLabel,
+    setPhHistoricalDataConfirmedLabel,
+  ] = useState([])
+  const [
+    phHistoricalDataConfirmedValue,
+    setPhHistoricalDataConfirmedValue,
+  ] = useState([])
+  const [
+    phHistoricalDataRecoveredLabel,
+    setPhHistoricalDataRecoveredLabel,
+  ] = useState([])
+  const [
+    phHistoricalDataRecoveredValue,
+    setPhHistoricalDataRecoveredValue,
+  ] = useState([])
+  const [
+    phHistoricalDataDeathsLabel,
+    setPhHistoricalDataDeathsLabel,
+  ] = useState([])
+  const [
+    phHistoricalDataDeathsValue,
+    setPhHistoricalDataDeathsValue,
+  ] = useState([])
 
   // Global
   const [testsGlobal, setTestsGlobal] = useState(0)
@@ -92,9 +117,45 @@ const App = () => {
     })
   }
 
+  const getPHDataHistorical = async () => {
+    if (document.hidden) return
+    await API.phDataHistorical().then((res) => {
+      let casesLabel = []
+      let casesValue = []
+      let recoveredLabel = []
+      let recoveredValue = []
+      let deathsLabel = []
+      let deathsValue = []
+
+      Object.entries(res.confirmed).forEach((c) => {
+        casesLabel.push(c[0])
+        casesValue.push(c[1])
+      })
+
+      Object.entries(res.recovered).forEach((c) => {
+        recoveredLabel.push(c[0])
+        recoveredValue.push(c[1])
+      })
+
+      Object.entries(res.deaths).forEach((c) => {
+        deathsLabel.push(c[0])
+        deathsValue.push(c[1])
+      })
+
+      setPhHistoricalDataConfirmedLabel(casesLabel)
+      setPhHistoricalDataConfirmedValue(casesValue)
+
+      setPhHistoricalDataRecoveredLabel(recoveredLabel)
+      setPhHistoricalDataRecoveredValue(recoveredValue)
+
+      setPhHistoricalDataDeathsLabel(deathsLabel)
+      setPhHistoricalDataDeathsValue(deathsValue)
+    })
+  }
+
   const getGlobalData = async () => {
     if (document.hidden) return
-    await API.phGlobalDataComplete().then((res) => {
+    await API.globalDataComplete().then((res) => {
       setTestsGlobal(res.tests)
       setConfirmedGlobal(res.confirmed)
       setRecoveredGlobal(res.recovered)
@@ -115,6 +176,7 @@ const App = () => {
   useEffect(() => {
     getPHData()
     setInterval(getPHData, 300000)
+    getPHDataHistorical()
     getGlobalData()
     setInterval(getGlobalData, 300000)
   }, [])
@@ -227,14 +289,22 @@ const App = () => {
       <BtnShowGraph
         clickFn={() => setChartPH(!chartPH)}
         chartVisible={chartPH}
+        testsColor="#2b6cb0"
         casesColor="#afb6c1"
         recoveredColor="#52a571"
         deathsColor="#e53e3e"
         activeColor="#d69e2e"
+        testsValue={testsPH}
         casesValue={confirmedPH}
         recoveredValue={recoveredPH}
         deathsValue={deathsPH}
         activeValue={activePH}
+        lineCasesLabel={phHistoricalDataConfirmedLabel}
+        lineCasesValue={phHistoricalDataConfirmedValue}
+        lineRecoveredLabel={phHistoricalDataRecoveredLabel}
+        lineRecoveredValue={phHistoricalDataRecoveredValue}
+        lineDeathsLabel={phHistoricalDataDeathsLabel}
+        lineDeathsValue={phHistoricalDataDeathsValue}
       />
 
       <h2 className="text-5xl mt-5 mb-2 font-hairline">Global</h2>
@@ -307,10 +377,12 @@ const App = () => {
       <BtnShowGraph
         clickFn={() => setChartGlobal(!chartGlobal)}
         chartVisible={chartGlobal}
+        testsColor="#2b6cb0"
         casesColor="#afb6c1"
         recoveredColor="#52a571"
         deathsColor="#e53e3e"
         activeColor="#d69e2e"
+        testsValue={testsGlobal}
         casesValue={confirmedGlobal}
         recoveredValue={recoveredGlobal}
         deathsValue={deathsGlobal}

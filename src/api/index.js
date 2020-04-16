@@ -53,7 +53,22 @@ export const phDataComplete = async () => {
   }
 }
 
-export const phGlobalDataComplete = async () => {
+export const phDataHistorical = async () => {
+  try {
+    const data = await fetch(
+      `${CORONA_LMAO_NINJA_API_ENDPOINT}historical/ph?lastdays=all`
+    ).then((res) => res.json())
+    return {
+      confirmed: data.timeline.cases,
+      recovered: data.timeline.recovered,
+      deaths: data.timeline.deaths,
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const globalDataComplete = async () => {
   try {
     const data = await fetch(
       `${CORONA_LMAO_NINJA_API_ENDPOINT}all`
@@ -74,4 +89,10 @@ export const phGlobalDataComplete = async () => {
   }
 }
 
-export default { phData, globalData, phDataComplete, phGlobalDataComplete }
+export default {
+  phData,
+  globalData,
+  phDataHistorical,
+  phDataComplete,
+  globalDataComplete,
+}
