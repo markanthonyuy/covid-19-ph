@@ -240,16 +240,16 @@ const App = () => {
       <h2 className="text-5xl mt-5 mb-2">Global</h2>
       <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
         <Box
-          classNameCount="text-3xl md:text-4xl leading-normal block text-purple-600"
+          classNameCount="text-3xl md:text-4xl leading-normal block text-indigo-600"
           title="Affected Countries"
           count={countriesAffected}
-          delay={500}
+          delay={100}
         />
         <Box
           classNameCount="text-3xl md:text-4xl leading-normal block text-blue-700"
           title="Tests Conducted"
           count={testsGlobal}
-          delay={100}
+          delay={200}
         />
         <Box
           hasPercent
@@ -261,7 +261,7 @@ const App = () => {
             confirmedGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={confirmedGlobalPercent}
-          delay={200}
+          delay={300}
         />
 
         <Box
@@ -274,7 +274,7 @@ const App = () => {
             recoveredGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={recoveredGlobalPercent}
-          delay={200}
+          delay={400}
         />
 
         <Box
@@ -287,7 +287,7 @@ const App = () => {
             deathGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={deathsGlobalPercent}
-          delay={300}
+          delay={500}
         />
 
         <Box
@@ -300,7 +300,7 @@ const App = () => {
             activeGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={activeGlobalPercent}
-          delay={300}
+          delay={600}
         />
       </div>
 
