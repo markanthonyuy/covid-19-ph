@@ -140,7 +140,8 @@ const App = () => {
         />
       </div>
       <p className="w-11/12 lg:w-5/6 mx-auto p-2 italic text-xs text-left mb-4 text-gray-500">
-        0 value might indicates no reports yet from the government
+        * Note: 0 value might indicate no reports yet from the Department of
+        Health
       </p>
       <h3 className="w-11/12 lg:w-5/6 mx-auto text-2xl p-2 text-left">
         All Time
