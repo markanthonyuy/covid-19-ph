@@ -14,6 +14,11 @@
 
 .box {
   height: 130px;
+  transition: all 0.1s ease;
+}
+
+.box:hover {
+  margin: -4px 0 4px;
 }
 
 .tweets {
