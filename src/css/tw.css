@@ -177,6 +177,9 @@ img {
 .hidden {
   display: none;
 }
+.flex-row {
+  flex-direction: row;
+}
 .flex-col {
   flex-direction: column;
 }
@@ -259,6 +262,9 @@ img {
 }
 .mt-10 {
   margin-top: 2.5rem;
+}
+.mr-10 {
+  margin-right: 2.5rem;
 }
 .p-1 {
   padding: 0.25rem;
@@ -371,9 +377,6 @@ img {
 }
 .text-3xl {
   font-size: 1.875rem;
-}
-.text-4xl {
-  font-size: 2.25rem;
 }
 .text-5xl {
   font-size: 3rem;

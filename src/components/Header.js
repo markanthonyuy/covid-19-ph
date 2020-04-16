@@ -3,10 +3,10 @@ import bacteria from '../images/bacteria.svg'
 
 const Header = () => {
   return (
-    <header className="App-header p-6">
-      <img src={bacteria} alt="" width="50" className="logo" />
-      <h1 className="w-full text-4xl mt-2 leading-none text-center font-hairline">
-        COVID 19 PH Tracker
+    <header className="App-header p-2 flex flex-row justify-center items-center">
+      <h1 className="text-3xl md:text-4xl leading-none text-center">
+        C<img src={bacteria} alt="" width="50" className="logo inline" />
+        VID 19 PH Tracker
       </h1>
     </header>
   )

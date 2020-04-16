@@ -123,9 +123,9 @@ const App = () => {
     <div className="App">
       <Header />
 
-      <h2 className="text-5xl p-5">
+      <h2 className="text-5xl p-5 font-hairline">
         Philippines{' '}
-        <img src={FLAG_PH} width="40" className="inline mb-1" alt="" />
+        <img src={FLAG_PH} width="70" className="inline mb-1" alt="" />
       </h2>
       <h3 className="w-11/12 lg:w-5/6 mx-auto text-2xl p-2 clearfix text-left">
         <span className="md:float-left text-left">
@@ -168,7 +168,7 @@ const App = () => {
           classNameCount="text-3xl md:text-4xl leading-normal block text-blue-700"
           title="Tests Conducted"
           count={testsPH}
-          delay={100}
+          delay={50}
         />
 
         <Box
@@ -181,7 +181,7 @@ const App = () => {
             confirmedPHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={confirmedPHPercent}
-          delay={200}
+          delay={100}
         />
 
         <Box
@@ -194,7 +194,7 @@ const App = () => {
             recoveredPHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={recoveredPHPercent}
-          delay={300}
+          delay={150}
         />
 
         <Box
@@ -207,7 +207,7 @@ const App = () => {
             deathsPHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={deathsPHPercent}
-          delay={400}
+          delay={200}
         />
 
         <Box
@@ -220,7 +220,7 @@ const App = () => {
             activePHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={activePHPercent}
-          delay={500}
+          delay={250}
         />
       </div>
 
@@ -237,19 +237,13 @@ const App = () => {
         activeValue={activePH}
       />
 
-      <h2 className="text-5xl mt-5 mb-2">Global</h2>
+      <h2 className="text-5xl mt-5 mb-2 font-hairline">Global</h2>
       <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
-        <Box
-          classNameCount="text-3xl md:text-4xl leading-normal block text-indigo-600"
-          title="Affected Countries"
-          count={countriesAffected}
-          delay={100}
-        />
         <Box
           classNameCount="text-3xl md:text-4xl leading-normal block text-blue-700"
           title="Tests Conducted"
           count={testsGlobal}
-          delay={200}
+          delay={50}
         />
         <Box
           hasPercent
@@ -261,7 +255,7 @@ const App = () => {
             confirmedGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={confirmedGlobalPercent}
-          delay={300}
+          delay={100}
         />
 
         <Box
@@ -274,7 +268,7 @@ const App = () => {
             recoveredGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={recoveredGlobalPercent}
-          delay={400}
+          delay={150}
         />
 
         <Box
@@ -287,7 +281,7 @@ const App = () => {
             deathGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={deathsGlobalPercent}
-          delay={500}
+          delay={200}
         />
 
         <Box
@@ -300,7 +294,13 @@ const App = () => {
             activeGlobalVisibility ? 'text-xs text-gray-600' : 'invisible'
           }
           percentValue={activeGlobalPercent}
-          delay={600}
+          delay={250}
+        />
+        <Box
+          classNameCount="text-3xl md:text-4xl leading-normal block text-indigo-600"
+          title="Affected Countries"
+          count={countriesAffected}
+          delay={300}
         />
       </div>
 
@@ -380,7 +380,7 @@ const App = () => {
       </h2>
 
       <div className="px-2 mt-4">
-        <Fade delay={100}>
+        <Fade delay={50}>
           <Hotlines />
         </Fade>
       </div>
@@ -389,7 +389,7 @@ const App = () => {
         Get The Latest Philippines Covid 19 News
       </h2>
       <div className="tweets p-4 md:flex md:justify-around mx-auto">
-        <Fade delay={100}>
+        <Fade delay={50}>
           <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
             <TwitterTimelineEmbed
               sourceType="profile"
@@ -398,7 +398,7 @@ const App = () => {
             />
           </div>
         </Fade>
-        <Fade delay={200}>
+        <Fade delay={150}>
           <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
             <TwitterTimelineEmbed
               sourceType="profile"
@@ -407,7 +407,7 @@ const App = () => {
             />
           </div>
         </Fade>
-        <Fade delay={300}>
+        <Fade delay={200}>
           <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
             <TwitterTimelineEmbed
               sourceType="profile"
