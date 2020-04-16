@@ -1,10 +1,11 @@
-const API_ENDPOINT = 'https://covid19.mathdro.id/api/'
+const MATHDROID_API_ENDPOINT = 'https://covid19.mathdro.id/api/'
+const CORONA_LMAO_NINJA_API_ENDPOINT = 'https://corona.lmao.ninja/v2/'
 
 export const phData = async () => {
   try {
-    const data = await fetch(`${API_ENDPOINT}countries/ph/`).then((res) =>
-      res.json()
-    )
+    const data = await fetch(
+      `${MATHDROID_API_ENDPOINT}countries/ph/`
+    ).then((res) => res.json())
     return {
       confirmed: data.confirmed.value,
       recovered: data.recovered.value,
@@ -18,7 +19,9 @@ export const phData = async () => {
 
 export const globalData = async () => {
   try {
-    const data = await fetch(`${API_ENDPOINT}`).then((res) => res.json())
+    const data = await fetch(`${MATHDROID_API_ENDPOINT}`).then((res) =>
+      res.json()
+    )
     return {
       confirmed: data.confirmed.value,
       recovered: data.recovered.value,
@@ -30,4 +33,24 @@ export const globalData = async () => {
   }
 }
 
-export default { phData, globalData }
+export const phDataComplete = async () => {
+  try {
+    const data = await fetch(
+      `${CORONA_LMAO_NINJA_API_ENDPOINT}countries/ph`
+    ).then((res) => res.json())
+    return {
+      confirmed: data.cases,
+      recovered: data.recovered,
+      deaths: data.deaths,
+      active: data.active,
+      todayCases: data.todayCases,
+      todayDeaths: data.todayDeaths,
+      tests: data.tests,
+      lastUpdate: data.updated,
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export default { phData, globalData, phDataComplete }

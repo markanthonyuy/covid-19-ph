@@ -18,14 +18,25 @@ import {
 import API from './api'
 
 const App = () => {
+  // PH
+  // Actual Value
+  const [testsPH, setTestsPH] = useState(0)
   const [confirmedPH, setConfirmedPH] = useState(0)
   const [recoveredPH, setRecoveredPH] = useState(0)
   const [deathsPH, setDeathsPH] = useState(0)
   const [activePH, setActivePH] = useState(0)
+  const [confirmedTodayPH, setConfirmedTodayPH] = useState(0)
+  const [deathsTodayPH, setDeathsTodayPH] = useState(0)
+  // Percentage
+  const [confirmedPHPercent, setConfirmedPHPercent] = useState(0)
   const [deathsPHPercent, setDeathsPHPercent] = useState(0)
   const [recoveredPHPercent, setRecoveredPHPercent] = useState(0)
   const [activePHPercent, setActivePHPercent] = useState(0)
-
+  // Visibility
+  const [
+    confirmedPHPercentVisibility,
+    setConfirmedPHPercentVisibility,
+  ] = useState(false)
   const [deathsPHPercentVisibility, setDeathsPHPercentVisibility] = useState(
     false
   )
@@ -37,6 +48,7 @@ const App = () => {
     false
   )
 
+  // Global
   const [confirmedGlobal, setConfirmedGlobal] = useState(0)
 
   const [recoveredGlobal, setRecoveredGlobal] = useState(0)
@@ -59,16 +71,19 @@ const App = () => {
   const [chartGlobal, setChartGlobal] = useState(false)
 
   const getPHData = async () => {
-    await API.phData().then((res) => {
+    await API.phDataComplete().then((res) => {
+      setTestsPH(res.tests)
       setConfirmedPH(res.confirmed)
+      setConfirmedTodayPH(res.todayCases)
       setRecoveredPH(res.recovered)
       setDeathsPH(res.deaths)
-      setActivePH(res.confirmed - (res.recovered + res.deaths))
+      setDeathsTodayPH(res.todayDeaths)
+      setActivePH(res.active)
+      setConfirmedPHPercent(((res.confirmed / res.tests) * 100).toFixed(2))
       setDeathsPHPercent(((res.deaths / res.confirmed) * 100).toFixed(2))
       setRecoveredPHPercent(((res.recovered / res.confirmed) * 100).toFixed(2))
-      setActivePHPercent(
-        (100 - ((res.recovered + res.deaths) / res.confirmed) * 100).toFixed(2)
-      )
+      setActivePHPercent(((res.active / res.confirmed) * 100).toFixed(2))
+      setUpdate(res.lastUpdate)
     })
   }
 
@@ -77,7 +92,6 @@ const App = () => {
       setConfirmedGlobal(res.confirmed)
       setRecoveredGlobal(res.recovered)
       setDeathsGlobal(res.deaths)
-      setUpdate(res.lastUpdate)
       setActiveGlobal(res.confirmed - (res.recovered + res.deaths))
       setDeathsGlobalPercent(((res.deaths / res.confirmed) * 100).toFixed(2))
       setRecoveredGlobalPercent(
@@ -104,21 +118,60 @@ const App = () => {
         Philippines{' '}
         <img src={FLAG_PH} width="40" className="inline mb-1" alt="" />
       </h2>
-      <div className="body w-5/6 md:w-11/12 lg:w-3/4 mx-auto md:flex justify-center items-center">
+      <h3 className="w-11/12 lg:w-5/6 mx-auto text-2xl p-2 text-left">
+        Today
+        <sup className="text-xs text-gray-500 ml-2">
+          {update && new Date(update).toLocaleDateString()}
+        </sup>
+      </h3>
+      <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
         <Box
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
-          classNameBoxTitle="text-xl"
-          classNameCount="text-5xl leading-normal block"
-          title="Cases"
-          count={confirmedPH}
+          classNameCount="text-3xl md:text-4xl leading-normal block"
+          title="Confirmed Cases"
+          count={confirmedTodayPH}
+          delay={100}
+        />
+
+        <Box
+          classNameCount="text-3xl md:text-4xl leading-normal block text-red-600"
+          title="Deaths"
+          count={deathsTodayPH}
+          delay={200}
+        />
+      </div>
+      <p className="w-11/12 lg:w-5/6 mx-auto p-2 italic text-xs text-left mb-4 text-gray-500">
+        0 value might indicates no reports yet from the government
+      </p>
+      <h3 className="w-11/12 lg:w-5/6 mx-auto text-2xl p-2 text-left">
+        All Time
+        <sup className="text-xs text-gray-500 ml-2">
+          Since day 1 of recorded confirm case
+        </sup>
+      </h3>
+      <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
+        <Box
+          classNameCount="text-3xl md:text-4xl leading-normal block text-blue-700"
+          title="Tests Conducted"
+          count={testsPH}
           delay={100}
         />
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
-          classNameBoxTitle="text-xl"
-          classNameCount="text-5xl leading-normal block text-green-700"
+          classNameCount="text-3xl md:text-4xl leading-normal block"
+          title="Confirmed Cases"
+          count={confirmedPH}
+          onEnd={() => setConfirmedPHPercentVisibility(true)}
+          percentVisibility={
+            confirmedPHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
+          }
+          percentValue={confirmedPHPercent}
+          delay={200}
+        />
+
+        <Box
+          hasPercent
+          classNameCount="text-3xl md:text-4xl leading-normal block text-green-700"
           title="Recovered"
           count={recoveredPH}
           onEnd={() => setRecoveredPHPercentVisibility(true)}
@@ -126,14 +179,12 @@ const App = () => {
             recoveredPHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={recoveredPHPercent}
-          delay={200}
+          delay={300}
         />
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
-          classNameBoxTitle="text-xl"
-          classNameCount="text-5xl leading-normal block text-red-600"
+          classNameCount="text-3xl md:text-4xl leading-normal block text-red-600"
           title="Deaths"
           count={deathsPH}
           onEnd={() => setDeathsPHPercentVisibility(true)}
@@ -141,14 +192,12 @@ const App = () => {
             deathsPHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={deathsPHPercent}
-          delay={300}
+          delay={400}
         />
 
         <Box
           hasPercent
-          classNameBox="md:w-1/3 flex-1 flex flex-col justify-center md:justify-start box p-3 md:p-5 bg-white rounded-lg mx-2 mb-3 md:mb-0 shadow"
-          classNameBoxTitle="text-xl"
-          classNameCount="text-5xl leading-normal block text-yellow-600"
+          classNameCount="text-3xl md:text-4xl leading-normal block text-yellow-600"
           title="Active Cases"
           count={activePH}
           onEnd={() => setActivePHPercentVisibility(true)}
@@ -156,7 +205,7 @@ const App = () => {
             activePHPercentVisibility ? 'text-sm text-gray-600' : 'invisible'
           }
           percentValue={activePHPercent}
-          delay={400}
+          delay={500}
         />
       </div>
 
@@ -174,21 +223,17 @@ const App = () => {
       />
 
       <h2 className="text-xl mt-5 mb-2">Global</h2>
-      <div className="body md:flex justify-center md:pt-1 w-5/6 md:w-11/12 lg:w-3/4 mx-auto">
+      <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
         <Box
-          classNameBox="special bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
-          classNameCount="text-2xl mb-1"
-          title="Cases"
+          classNameCount="text-3xl md:text-4xl leading-normal block"
+          title="Confirmed Cases"
           count={confirmedGlobal}
           delay={100}
         />
 
         <Box
           hasPercent
-          classNameBox="bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0 border-b border-gray-300 md:border-b-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
-          classNameCount="text-2xl mb-1 block text-green-700"
+          classNameCount="text-3xl md:text-4xl leading-normal block text-green-700"
           title="Recovered"
           count={recoveredGlobal}
           onEnd={() => setRecoveredGlobalVisibility(true)}
@@ -201,9 +246,7 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
-          classNameCount="text-2xl mb-1 block text-red-600"
+          classNameCount="text-3xl md:text-4xl leading-normal block text-red-600"
           title="Deaths"
           count={deathsGlobal}
           onEnd={() => setDeathGlobalVisibility(true)}
@@ -216,9 +259,7 @@ const App = () => {
 
         <Box
           hasPercent
-          classNameBox="bg-white shadow md:pb-4 rounded-md mx-2 mb-3 md:mb-0 md:w-1/3 py-4 md:py-0"
-          classNameBoxTitle="md:w-2/3 mx-auto md:mt-2 mb-2 md:mb-0 md:p-2 text-md"
-          classNameCount="text-2xl mb-1 block text-yellow-600"
+          classNameCount="text-3xl md:text-4xl leading-normal block text-yellow-600"
           title="Active Cases"
           count={activeGlobal}
           onEnd={() => setActiveGlobalVisibility(true)}
@@ -244,11 +285,7 @@ const App = () => {
       />
 
       <p className="mt-4 text-sm">
-        Last update was{' '}
-        <ReactTimeAgo
-          date={new Date(update.substr(0, update.length - 5)).getTime()}
-          live="false"
-        />
+        Last update was <ReactTimeAgo date={update} live="false" />
       </p>
 
       <h2 className="md:w-2/3 py-4 mt-4 mx-auto text-2xl">
