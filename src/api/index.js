@@ -89,10 +89,26 @@ export const globalDataComplete = async () => {
   }
 }
 
+export const globalDataHistorical = async () => {
+  try {
+    const data = await fetch(
+      `${CORONA_LMAO_NINJA_API_ENDPOINT}historical/all`
+    ).then((res) => res.json())
+    return {
+      confirmed: data.cases,
+      recovered: data.recovered,
+      deaths: data.deaths,
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export default {
   phData,
   globalData,
   phDataHistorical,
   phDataComplete,
   globalDataComplete,
+  globalDataHistorical,
 }

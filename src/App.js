@@ -79,12 +79,12 @@ const App = () => {
   const [recoveredGlobal, setRecoveredGlobal] = useState(0)
   const [deathsGlobal, setDeathsGlobal] = useState(0)
   const [activeGlobal, setActiveGlobal] = useState(0)
-
+  // Percentage
   const [confirmedGlobalPercent, setConfirmedGlobalPercent] = useState(0)
   const [deathsGlobalPercent, setDeathsGlobalPercent] = useState(0)
   const [recoveredGlobalPercent, setRecoveredGlobalPercent] = useState(0)
   const [activeGlobalPercent, setActiveGlobalPercent] = useState(0)
-
+  // Visibility
   const [confirmedGlobalVisibility, setConfirmedGlobalVisibility] = useState(
     false
   )
@@ -93,6 +93,31 @@ const App = () => {
     false
   )
   const [activeGlobalVisibility, setActiveGlobalVisibility] = useState(false)
+  // Historical
+  const [
+    globalHistoricalDataConfirmedLabel,
+    setGlobalHistoricalDataConfirmedLabel,
+  ] = useState([])
+  const [
+    globalHistoricalDataConfirmedValue,
+    setGlobalHistoricalDataConfirmedValue,
+  ] = useState([])
+  const [
+    globalHistoricalDataRecoveredLabel,
+    setGlobalHistoricalDataRecoveredLabel,
+  ] = useState([])
+  const [
+    globalHistoricalDataRecoveredValue,
+    setGlobalHistoricalDataRecoveredValue,
+  ] = useState([])
+  const [
+    globalHistoricalDataDeathsLabel,
+    setGlobalHistoricalDataDeathsLabel,
+  ] = useState([])
+  const [
+    globalHistoricalDataDeathsValue,
+    setGlobalHistoricalDataDeathsValue,
+  ] = useState([])
 
   const [countriesAffected, setCountriesAffected] = useState(0)
   const [update, setUpdate] = useState('')
@@ -107,7 +132,6 @@ const App = () => {
         setConfirmedTodayPH(res.todayCases)
         setDeathsTodayPH(res.todayDeaths)
       }
-      console.log(new Date(res.lastUpdate).getHours())
       setConfirmedPH(res.confirmed)
       setRecoveredPH(res.recovered)
       setDeathsPH(res.deaths)
@@ -176,12 +200,49 @@ const App = () => {
     })
   }
 
+  const getGlobalDataHistorical = async () => {
+    if (document.hidden) return
+    await API.globalDataHistorical().then((res) => {
+      let casesLabel = []
+      let casesValue = []
+      let recoveredLabel = []
+      let recoveredValue = []
+      let deathsLabel = []
+      let deathsValue = []
+
+      Object.entries(res.confirmed).forEach((c) => {
+        casesLabel.push(c[0])
+        casesValue.push(c[1])
+      })
+
+      Object.entries(res.recovered).forEach((c) => {
+        recoveredLabel.push(c[0])
+        recoveredValue.push(c[1])
+      })
+
+      Object.entries(res.deaths).forEach((c) => {
+        deathsLabel.push(c[0])
+        deathsValue.push(c[1])
+      })
+
+      setGlobalHistoricalDataConfirmedLabel(casesLabel)
+      setGlobalHistoricalDataConfirmedValue(casesValue)
+
+      setGlobalHistoricalDataRecoveredLabel(recoveredLabel)
+      setGlobalHistoricalDataRecoveredValue(recoveredValue)
+
+      setGlobalHistoricalDataDeathsLabel(deathsLabel)
+      setGlobalHistoricalDataDeathsValue(deathsValue)
+    })
+  }
+
   useEffect(() => {
     getPHData()
     setInterval(getPHData, 300000)
     getPHDataHistorical()
     getGlobalData()
     setInterval(getGlobalData, 300000)
+    getGlobalDataHistorical()
   }, [])
 
   return (
@@ -292,16 +353,15 @@ const App = () => {
       <BtnShowGraph
         clickFn={() => setChartPH(!chartPH)}
         chartVisible={chartPH}
-        testsColor="#2b6cb0"
-        casesColor="#afb6c1"
-        recoveredColor="#52a571"
-        deathsColor="#e53e3e"
-        activeColor="#d69e2e"
-        testsValue={testsPH}
-        casesValue={confirmedPH}
-        recoveredValue={recoveredPH}
-        deathsValue={deathsPH}
-        activeValue={activePH}
+        barLabel={[
+          'Tests Conducted',
+          'Cases',
+          'Recovered',
+          'Deaths',
+          'Active Case',
+        ]}
+        barDataColor={['#2b6cb0', '#afb6c1', '#52a571', '#e53e3e', '#d69e2e']}
+        barDataValue={[testsPH, confirmedPH, recoveredPH, deathsPH, activePH]}
         lineCasesLabel={phHistoricalDataConfirmedLabel}
         lineCasesValue={phHistoricalDataConfirmedValue}
         lineRecoveredLabel={phHistoricalDataRecoveredLabel}
@@ -380,16 +440,27 @@ const App = () => {
       <BtnShowGraph
         clickFn={() => setChartGlobal(!chartGlobal)}
         chartVisible={chartGlobal}
-        testsColor="#2b6cb0"
-        casesColor="#afb6c1"
-        recoveredColor="#52a571"
-        deathsColor="#e53e3e"
-        activeColor="#d69e2e"
-        testsValue={testsGlobal}
-        casesValue={confirmedGlobal}
-        recoveredValue={recoveredGlobal}
-        deathsValue={deathsGlobal}
-        activeValue={activeGlobal}
+        barLabel={[
+          'Tests Conducted',
+          'Cases',
+          'Recovered',
+          'Deaths',
+          'Active Case',
+        ]}
+        barDataColor={['#2b6cb0', '#afb6c1', '#52a571', '#e53e3e', '#d69e2e']}
+        barDataValue={[
+          testsGlobal,
+          confirmedGlobal,
+          recoveredGlobal,
+          deathsGlobal,
+          activeGlobal,
+        ]}
+        lineCasesLabel={globalHistoricalDataConfirmedLabel}
+        lineCasesValue={globalHistoricalDataConfirmedValue}
+        lineRecoveredLabel={globalHistoricalDataRecoveredLabel}
+        lineRecoveredValue={globalHistoricalDataRecoveredValue}
+        lineDeathsLabel={globalHistoricalDataDeathsLabel}
+        lineDeathsValue={globalHistoricalDataDeathsValue}
       />
 
       <h2 className="md:w-2/3 py-4 mt-4 mx-auto text-2xl">
