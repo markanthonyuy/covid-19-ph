@@ -14,7 +14,7 @@ const BtnShowGraph = (props) => {
       <div
         className={
           props.chartVisible
-            ? 'flex flex-col md:flex-row flex-wrap justify-center items-center mx-auto bg-white p-10'
+            ? 'flex flex-col md:flex-row flex-wrap justify-center items-center mx-auto bg-white py-10'
             : 'hidden'
         }
       >
