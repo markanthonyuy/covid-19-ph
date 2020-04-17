@@ -130,7 +130,7 @@ const App = () => {
     if (document.hidden) return
     await API.phDataComplete().then((res) => {
       setTestsPH(res.tests)
-      if (new Date(res.lastUpdate).getHours() >= 12) {
+      if (new Date(res.lastUpdate).getHours() >= 10) {
         setConfirmedTodayPH(res.todayCases)
         setDeathsTodayPH(res.todayDeaths)
       }
