@@ -103,11 +103,14 @@ const App = () => {
     if (document.hidden) return
     await API.phDataComplete().then((res) => {
       setTestsPH(res.tests)
+      if (new Date(res.lastUpdate).getHours() >= 12) {
+        setConfirmedTodayPH(res.todayCases)
+        setDeathsTodayPH(res.todayDeaths)
+      }
+      console.log(new Date(res.lastUpdate).getHours())
       setConfirmedPH(res.confirmed)
-      setConfirmedTodayPH(res.todayCases)
       setRecoveredPH(res.recovered)
       setDeathsPH(res.deaths)
-      setDeathsTodayPH(res.todayDeaths)
       setActivePH(res.active)
       setConfirmedPHPercent(((res.confirmed / res.tests) * 100).toFixed(2))
       setDeathsPHPercent(((res.deaths / res.confirmed) * 100).toFixed(2))
@@ -215,7 +218,7 @@ const App = () => {
           delay={200}
         />
       </div>
-      <p className="w-11/12 lg:w-5/6 mx-auto p-2 italic text-xs text-left mb-4 text-gray-500">
+      <p className="w-11/12 lg:w-5/6 my-0 mx-auto px-2 italic text-xs text-left mb-4 text-gray-500">
         * Note: 0 value might indicate no reports yet from the Department of
         Health
       </p>
