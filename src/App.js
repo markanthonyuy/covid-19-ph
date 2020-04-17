@@ -13,6 +13,7 @@ import {
   NEWS,
   SOCIAL_DISTANCING,
   FLAG_PH,
+  TIME,
 } from './images'
 
 import API from './api'
@@ -123,6 +124,7 @@ const App = () => {
   const [update, setUpdate] = useState('')
   const [chartPH, setChartPH] = useState(false)
   const [chartGlobal, setChartGlobal] = useState(false)
+  const [updateTimeVisibility, setUpdateTimeVisibility] = useState(false)
 
   const getPHData = async () => {
     if (document.hidden) return
@@ -141,6 +143,7 @@ const App = () => {
       setRecoveredPHPercent(((res.recovered / res.confirmed) * 100).toFixed(2))
       setActivePHPercent(((res.active / res.confirmed) * 100).toFixed(2))
       setUpdate(res.lastUpdate)
+      setUpdateTimeVisibility(true)
     })
   }
 
@@ -260,8 +263,13 @@ const App = () => {
             {update && new Date(update).toLocaleDateString()}
           </sup>
         </span>
-        <p className="md:float-right text-sm mt-2 text-gray-500">
-          Last update was <ReactTimeAgo date={update} live="false" />
+        <p
+          className={`md:float-right text-sm mt-2 text-gray-500 ${
+            !updateTimeVisibility && 'hidden'
+          }`}
+        >
+          <img src={TIME} width="16" className="inline clock mr-1" /> Updated{' '}
+          <ReactTimeAgo date={update} live={false} />{' '}
         </p>
       </h3>
       <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">

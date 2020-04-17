@@ -30,6 +30,10 @@
   animation: 5s rotate linear infinite;
 }
 
+.clock {
+  vertical-align: -3px;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
