@@ -22,11 +22,8 @@ const Footer = () => {
         </span>
         <span className="p-1">
           API by{' '}
-          <a
-            href="https://github.com/mathdroid/covid-19-api"
-            className="text-blue-500"
-          >
-            mathdroid
+          <a href="https://github.com/novelcovid/api" className="text-blue-500">
+            Novel Covid
           </a>
         </span>
       </p>
