@@ -279,9 +279,9 @@ const App = () => {
           delay={200}
         />
       </div>
-      <p className="w-11/12 lg:w-5/6 my-0 mx-auto px-2 italic text-xs text-left mb-4 text-gray-500">
+      <p className="w-11/12 lg:w-5/6 mt-2 mx-auto px-2 italic text-xs text-left mb-4 text-gray-500">
         * Note: 0 value might indicate no reports yet from the Department of
-        Health
+        Health within this day
       </p>
       <h3 className="w-11/12 lg:w-5/6 mx-auto text-2xl p-2 text-left">
         All Time
