@@ -18,7 +18,7 @@ const BtnShowGraph = (props) => {
             : 'hidden'
         }
       >
-        <div className="chart w-full md:w-1/2 block p-2">
+        <div className="chart w-full md:w-1/2 lg:w-2/5 p-2">
           <HorizontalBar
             data={{
               labels: [...props.barLabel],
@@ -37,7 +37,7 @@ const BtnShowGraph = (props) => {
             }}
           ></HorizontalBar>
         </div>
-        <div className="chart w-full md:w-1/2 block p-2">
+        <div className="chart w-full md:w-1/2 lg:w-2/5 p-2">
           <Line
             legend={{ display: true }}
             data={{
@@ -56,7 +56,7 @@ const BtnShowGraph = (props) => {
             }}
           ></Line>
         </div>
-        <div className="chart w-full md:w-1/2 block p-2">
+        <div className="chart w-full md:w-1/2 lg:w-2/5 p-2">
           <Line
             legend={{ display: true }}
             data={{
@@ -75,7 +75,7 @@ const BtnShowGraph = (props) => {
             }}
           ></Line>
         </div>
-        <div className="chart w-full md:w-1/2 block p-2">
+        <div className="chart w-full md:w-1/2 lg:w-2/5 p-2">
           <Line
             legend={{ display: true }}
             data={{
