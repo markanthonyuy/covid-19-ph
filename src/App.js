@@ -268,8 +268,13 @@ const App = () => {
             !updateTimeVisibility && 'hidden'
           }`}
         >
-          <img src={TIME} width="16" className="inline clock mr-1" /> Updated{' '}
-          <ReactTimeAgo date={update} live={false} />{' '}
+          <img
+            src={TIME}
+            width="16"
+            alt="Clock"
+            className="inline clock mr-1"
+          />{' '}
+          Updated <ReactTimeAgo date={update} live={false} />{' '}
         </p>
       </h3>
       <div className="body w-11/12 lg:w-5/6 mx-auto clearfix">
