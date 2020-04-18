@@ -338,7 +338,7 @@ const App = () => {
           }
           percentValue={recoveredPHPercent}
           delay={150}
-          help={`Out of all ${testsPH.toLocaleString()} test conducted ${recoveredPHPercent}% recovered`}
+          help={`Out of all ${confirmedPH.toLocaleString()} confirmed cases ${recoveredPHPercent}% recovered`}
           helpBg="bg-green-100"
           helpBorder="border-green-500"
         />
@@ -354,7 +354,7 @@ const App = () => {
           }
           percentValue={deathsPHPercent}
           delay={200}
-          help={`Out of all ${testsPH.toLocaleString()} test conducted ${deathsPHPercent}% died`}
+          help={`Out of all ${confirmedPH.toLocaleString()} confirmed cases ${deathsPHPercent}% died`}
           helpBg="bg-red-100"
           helpBorder="border-red-500"
         />
@@ -370,7 +370,7 @@ const App = () => {
           }
           percentValue={activePHPercent}
           delay={250}
-          help={`Out of all ${testsPH.toLocaleString()} test conducted ${activePHPercent}% are still active`}
+          help={`Out of all ${confirmedPH.toLocaleString()} confirmed cases ${activePHPercent}% are still active`}
           helpBg="bg-yellow-100"
           helpBorder="border-yellow-500"
         />
@@ -415,7 +415,7 @@ const App = () => {
           }
           percentValue={confirmedGlobalPercent}
           delay={100}
-          help={`Out of all ${confirmedGlobal.toLocaleString()} test conducted ${confirmedGlobalPercent}% are still active`}
+          help={`Out of all ${testsGlobal.toLocaleString()} test conducted ${confirmedGlobalPercent}% are still active`}
         />
 
         <Box
@@ -429,7 +429,7 @@ const App = () => {
           }
           percentValue={recoveredGlobalPercent}
           delay={150}
-          help={`Out of all ${recoveredGlobal.toLocaleString()} test conducted ${recoveredGlobalPercent}% are confirmed`}
+          help={`Out of all ${confirmedGlobal.toLocaleString()} confirmed cases ${recoveredGlobalPercent}% recovered`}
           helpBg="bg-green-100"
           helpBorder="border-green-500"
         />
@@ -445,7 +445,7 @@ const App = () => {
           }
           percentValue={deathsGlobalPercent}
           delay={200}
-          help={`Out of all ${deathsGlobal.toLocaleString()} test conducted ${deathsGlobalPercent}% died`}
+          help={`Out of all ${confirmedGlobal.toLocaleString()} confirmed cases ${deathsGlobalPercent}% died`}
           helpBg="bg-red-100"
           helpBorder="border-red-500"
         />
@@ -461,7 +461,7 @@ const App = () => {
           }
           percentValue={activeGlobalPercent}
           delay={250}
-          help={`Out of all ${activeGlobal.toLocaleString()} test conducted ${activeGlobalPercent}% are still active`}
+          help={`Out of all ${confirmedGlobal.toLocaleString()} confirmed cases ${activeGlobalPercent}% are still active`}
           helpBg="bg-yellow-100"
           helpBorder="border-yellow-500"
         />
