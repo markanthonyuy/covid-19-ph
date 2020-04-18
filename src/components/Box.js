@@ -28,7 +28,7 @@ const Box = (props) => {
                 <img src={INFO} alt="info" width="17" />
               </span>
               <div
-                className={`help absolute w-full text-xs text-gray-700 shadow-md p-3 border-l-4 ${
+                className={`help absolute w-full text-xs text-gray-700 shadow-md p-3 border-l-4 leading-normal ${
                   props.helpBg || 'bg-white'
                 } ${props.helpBorder || 'border-gray-600'} ${
                   helpVisibility ? 'appear' : ''
