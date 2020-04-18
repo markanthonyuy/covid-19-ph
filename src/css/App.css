@@ -18,7 +18,7 @@
   transition: all 0.1s ease;
 }
 
-.box:hover {
+.box.has-info:hover {
   margin: -3px 0 3px;
 }
 

@@ -4,7 +4,15 @@ import './css/tw.css'
 import ReactTimeAgo from 'react-timeago'
 import Fade from 'react-reveal/Fade'
 import { TwitterTimelineEmbed } from 'react-twitter-embed'
-import { Box, Header, Footer, BtnShowGraph, Tip, Hotlines } from './components'
+import {
+  Box,
+  Header,
+  Footer,
+  BtnShowGraph,
+  Tip,
+  Hotlines,
+  SVGInfo,
+} from './components'
 import {
   CLEAN_HANDS,
   DOCTOR,
@@ -14,7 +22,6 @@ import {
   SOCIAL_DISTANCING,
   FLAG_PH,
   TIME,
-  INFO,
 } from './images'
 
 import API from './api'
@@ -293,7 +300,7 @@ const App = () => {
           delay={200}
         />
       </div>
-      <p className="w-11/12 lg:w-5/6 mt-2 mx-auto px-2 italic text-xs text-left mb-4 text-gray-500">
+      <p className="w-11/12 lg:w-5/6 mt-2 mx-auto px-2 italic text-xs text-left mb-4 text-gray-500 leading-normal">
         * Note: 0 value might indicate no reports yet from the Department of
         Health within this day
       </p>

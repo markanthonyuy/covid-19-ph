@@ -418,6 +418,12 @@ img {
 .italic {
   font-style: italic;
 }
+.uppercase {
+  text-transform: uppercase;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
 .select-none {
   -webkit-user-select: none;
   -ms-user-select: none;
