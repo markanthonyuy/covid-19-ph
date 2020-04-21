@@ -134,6 +134,8 @@ const App = () => {
   const [chartGlobal, setChartGlobal] = useState(false)
   const [updateTimeVisibility, setUpdateTimeVisibility] = useState(false)
 
+  const [darkMode, setDarkMode] = useState(false)
+
   const getPHData = async () => {
     if (document.hidden) return
     await API.phDataComplete().then((res) => {
@@ -256,9 +258,33 @@ const App = () => {
     getGlobalDataHistorical()
   }, [])
 
+  const changeDarkModeClass = () => {
+    console.log('test')
+    document.body.classList.toggle('dark-mode')
+  }
+
   return (
-    <div className="App">
+    <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
       <Header />
+
+      <div className="mode-switcher-wrap">
+        <input
+          type="checkbox"
+          id="mode-switcher"
+          defaultChecked={!darkMode}
+          onClick={() => {
+            setDarkMode(!darkMode)
+          }}
+        />
+        <label htmlFor="mode-switcher" className="toggle">
+          <span className="sun-moon">
+            <span className="crater crater-1"></span>
+          </span>
+          <span class="star star-6"></span>
+          <span class="star star-7"></span>
+          <span class="star star-8"></span>
+        </label>
+      </div>
 
       <h2 className="text-5xl p-5 font-hairline">
         Philippines{' '}
@@ -579,29 +605,77 @@ const App = () => {
       </h2>
       <div className="tweets p-4 md:flex md:justify-around mx-auto">
         <Fade delay={50}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
+          <div
+            className={`tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow ${
+              darkMode ? 'hidden' : ''
+            }`}
+          >
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="DOHgovph"
               options={{ height: 500 }}
             />
           </div>
+          <div
+            className={`tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow ${
+              darkMode ? '' : 'hidden'
+            }`}
+          >
+            <TwitterTimelineEmbed
+              sourceType="profile"
+              screenName="DOHgovph"
+              options={{ height: 500 }}
+              theme="dark"
+            />
+          </div>
         </Fade>
         <Fade delay={150}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
+          <div
+            className={`tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow ${
+              darkMode ? 'hidden' : ''
+            }`}
+          >
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="WHOPhilippines"
               options={{ height: 500 }}
             />
           </div>
+          <div
+            className={`tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow ${
+              darkMode ? '' : 'hidden'
+            }`}
+          >
+            <TwitterTimelineEmbed
+              sourceType="profile"
+              screenName="WHOPhilippines"
+              options={{ height: 500 }}
+              theme="dark"
+            />
+          </div>
         </Fade>
         <Fade delay={200}>
-          <div className="tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow">
+          <div
+            className={`tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow ${
+              darkMode ? 'hidden' : ''
+            }`}
+          >
             <TwitterTimelineEmbed
               sourceType="profile"
               screenName="Covid19Ph"
               options={{ height: 500 }}
+            />
+          </div>
+          <div
+            className={`tweet w-5/6 md:w-1/3 lg:w-1/4 mx-auto md:mx-2 mb-4 md:mb-0 shadow ${
+              darkMode ? '' : 'hidden'
+            }`}
+          >
+            <TwitterTimelineEmbed
+              sourceType="profile"
+              screenName="Covid19Ph"
+              options={{ height: 500 }}
+              theme="dark"
             />
           </div>
         </Fade>

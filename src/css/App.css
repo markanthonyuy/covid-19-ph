@@ -1,4 +1,5 @@
 .App {
+  position: relative;
   text-align: center;
 }
 
@@ -61,5 +62,229 @@
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.dark-mode {
+  color: #d1d6de;
+}
+
+.dark-mode table td,
+.dark-mode table th {
+  border-color: #383838 !important;
+}
+
+.dark-mode.App {
+  background: #2e3235;
+}
+
+.dark-mode .text-gray-600 {
+  color: #ccd4e0 !important;
+}
+
+.dark-mode .bg-white {
+  background: #000;
+}
+
+.dark-mode .text-gray-800,
+.dark-mode .text-gray-700 {
+  color: #fff;
+}
+
+.dark-mode .bg-gray-200 {
+  background: #030404;
+}
+
+.dark-mode .bg-blue-500 {
+  background: #233d52;
+}
+
+.dark-mode .bg-green-100 {
+  background: #256e4a;
+}
+
+.dark-mode .border-green-500 {
+  border-color: #48bb78;
+}
+
+.dark-mode .bg-red-100 {
+  background: #ab1c1c;
+}
+
+.dark-mode .border-red-500 {
+  border-color: #e53e3e;
+}
+
+.dark-mode .bg-yellow-100 {
+  background: #b38322;
+}
+
+.dark-mode .border-yellow-500 {
+  border-color: #d69e2e;
+}
+
+.mode-switcher-wrap {
+  position: absolute;
+  top: 120px;
+  right: 150px;
+}
+
+#mode-switcher {
+  display: none;
+}
+
+.toggle {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  background: #211042;
+  border-radius: 50px;
+  transition: 500ms;
+  overflow: hidden;
+}
+
+.sun-moon {
+  position: absolute;
+  display: inline-block;
+  top: 7px;
+  left: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #faeaf1;
+  overflow: hidden;
+  box-shadow: 0 0 35px 4px rgba(255, 255, 255);
+  transition: all 500ms ease-out;
+}
+
+.crater {
+  position: absolute;
+  display: inline-block;
+  background: #faeaf1;
+  border-radius: 50%;
+  transition: 500ms;
+}
+
+.crater-1 {
+  background: #fffff9;
+  width: 26px;
+  height: 26px;
+  left: 10px;
+  bottom: 10px;
+}
+
+.star {
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 1px 0 2px 2px rgba(255, 255, 255);
+}
+
+.star-6,
+.star-7,
+.star-8 {
+  width: 10px;
+  height: 2px;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  box-shadow: 5px 0px 4px 1px #fff;
+  animation-name: travel;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+.star-6 {
+  right: 10px;
+  bottom: 10px;
+  animation-delay: -2s;
+}
+
+.star-7 {
+  right: 8px;
+  bottom: 20px;
+}
+
+.star-8 {
+  right: 30px;
+  top: 10px;
+  animation-delay: -4s;
+}
+
+@keyframes travel {
+  0% {
+    transform: rotate(-45deg) translateX(70px);
+  }
+
+  50% {
+    transform: rotate(-45deg) translateX(-20px);
+    box-shadow: 5px 0px 6px 1px #fff;
+  }
+
+  100% {
+    transform: rotate(-45deg) translateX(-30px);
+    width: 2px;
+    height: 2px;
+    opacity: 0;
+    box-shadow: none;
+  }
+}
+
+#mode-switcher:checked + .toggle {
+  background: #91eeff;
+}
+
+#mode-switcher:checked + .toggle .sun-moon {
+  background: #ffe055;
+  transform: translateX(45px);
+  box-shadow: 0 0 35px 5px rgba(255, 255, 255);
+}
+
+#mode-switcher:checked + .toggle .star {
+  animation: move 2s infinite;
+  transform: none;
+  box-shadow: none;
+}
+
+#mode-switcher:checked + .toggle .star-6 {
+  top: 25px;
+  right: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+#mode-switcher:checked + .toggle .star-7 {
+  top: 25px;
+  right: 10px;
+  width: 15px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+#mode-switcher:checked + .toggle .star-8 {
+  width: 20px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+#mode-switcher:checked + .toggle .sun-moon .crater {
+  transform: rotate(-45deg) translateX(70px);
+}
+
+@keyframes move {
+  0% {
+    transform: none;
+  }
+
+  25% {
+    transform: translateX(2px);
+  }
+
+  100% {
+    transform: translateX(-2px);
   }
 }
