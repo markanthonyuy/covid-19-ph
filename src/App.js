@@ -280,9 +280,9 @@ const App = () => {
           <span className="sun-moon">
             <span className="crater crater-1"></span>
           </span>
-          <span class="star star-6"></span>
-          <span class="star star-7"></span>
-          <span class="star star-8"></span>
+          <span class="star star-cloud-1"></span>
+          <span class="star star-cloud-2"></span>
+          <span class="star star-cloud-3"></span>
         </label>
       </div>
 
