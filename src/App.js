@@ -139,11 +139,15 @@ const App = () => {
   const getPHData = async () => {
     if (document.hidden) return
     await API.phDataComplete().then((res) => {
-      setTestsPH(res.tests)
-      if (new Date(res.lastUpdate).getHours() >= 10) {
+      const hours = new Date(res.lastUpdate).getHours()
+
+      // Prevents showing yesteredays data from API
+      if (hours >= 10) {
         setConfirmedTodayPH(res.todayCases)
         setDeathsTodayPH(res.todayDeaths)
       }
+
+      setTestsPH(res.tests)
       setConfirmedPH(res.confirmed)
       setRecoveredPH(res.recovered)
       setDeathsPH(res.deaths)
@@ -250,6 +254,9 @@ const App = () => {
   }
 
   useEffect(() => {
+    const localHours = new Date().getHours()
+    setDarkMode(!(localHours >= 6 && localHours <= 17))
+
     getPHData()
     setInterval(getPHData, 300000)
     getPHDataHistorical()
@@ -257,11 +264,6 @@ const App = () => {
     setInterval(getGlobalData, 300000)
     getGlobalDataHistorical()
   }, [])
-
-  const changeDarkModeClass = () => {
-    console.log('test')
-    document.body.classList.toggle('dark-mode')
-  }
 
   return (
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
@@ -271,8 +273,8 @@ const App = () => {
         <input
           type="checkbox"
           id="mode-switcher"
-          defaultChecked={!darkMode}
-          onClick={() => {
+          checked={!darkMode}
+          onChange={() => {
             setDarkMode(!darkMode)
           }}
         />
@@ -280,9 +282,9 @@ const App = () => {
           <span className="sun-moon">
             <span className="crater crater-1"></span>
           </span>
-          <span class="star star-cloud-1"></span>
-          <span class="star star-cloud-2"></span>
-          <span class="star star-cloud-3"></span>
+          <span className="star star-cloud-1"></span>
+          <span className="star star-cloud-2"></span>
+          <span className="star star-cloud-3"></span>
         </label>
       </div>
 
