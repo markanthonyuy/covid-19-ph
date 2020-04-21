@@ -26,28 +26,30 @@ sup {
 img {
   border-style: none;
 }
-button {
+button,
+input {
   font-family: inherit;
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
 }
-button {
+button,
+input {
   overflow: visible;
 }
 button {
   text-transform: none;
 }
-
+[type='button'],
 button {
   -webkit-appearance: button;
 }
-
+[type='button']::-moz-focus-inner,
 button::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
-
+[type='button']:-moz-focusring,
 button:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
@@ -58,6 +60,10 @@ legend {
   max-width: 100%;
   padding: 0;
   white-space: normal;
+}
+[type='checkbox'] {
+  box-sizing: border-box;
+  padding: 0;
 }
 [hidden] {
   display: none;
@@ -90,6 +96,15 @@ button:focus {
 img {
   border-style: solid;
 }
+input:-ms-input-placeholder {
+  color: #a0aec0;
+}
+input::-ms-input-placeholder {
+  color: #a0aec0;
+}
+input::placeholder {
+  color: #a0aec0;
+}
 [role='button'],
 button {
   cursor: pointer;
@@ -107,7 +122,8 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
-button {
+button,
+input {
   padding: 0;
   line-height: inherit;
   color: inherit;
@@ -332,6 +348,9 @@ img {
 .pr-4 {
   padding-right: 1rem;
 }
+.static {
+  position: static;
+}
 .absolute {
   position: absolute;
 }
@@ -468,6 +487,9 @@ img {
     margin-left: auto;
     margin-right: auto;
   }
+  .md\:mt-0 {
+    margin-top: 0;
+  }
   .md\:mb-0 {
     margin-bottom: 0;
   }
@@ -486,6 +508,9 @@ img {
   }
   .md\:pr-0 {
     padding-right: 0;
+  }
+  .md\:absolute {
+    position: absolute;
   }
   .md\:text-left {
     text-align: left;

@@ -267,7 +267,7 @@ const App = () => {
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
       <Header />
 
-      <div className="mode-switcher-wrap">
+      <div className="mode-switcher-wrap static mt-4 md:mt-0 md:absolute">
         <input
           type="checkbox"
           id="mode-switcher"

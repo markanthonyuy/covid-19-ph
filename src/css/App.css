@@ -124,9 +124,8 @@
 }
 
 .mode-switcher-wrap {
-  position: absolute;
   top: 120px;
-  right: 150px;
+  right: 8%;
 }
 
 #mode-switcher {
