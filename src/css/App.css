@@ -132,7 +132,7 @@
   display: none;
 }
 
-.toggle {
+.switcher {
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -232,23 +232,23 @@
   }
 }
 
-#mode-switcher:checked + .toggle {
+#mode-switcher:checked + .switcher {
   background: #91eeff;
 }
 
-#mode-switcher:checked + .toggle .sun-moon {
+#mode-switcher:checked + .switcher .sun-moon {
   background: #ffe055;
   transform: translateX(45px);
   box-shadow: 0 0 35px 5px rgba(255, 255, 255);
 }
 
-#mode-switcher:checked + .toggle .star {
+#mode-switcher:checked + .switcher .star {
   animation: move 2s infinite;
   transform: none;
   box-shadow: none;
 }
 
-#mode-switcher:checked + .toggle .star-cloud-1 {
+#mode-switcher:checked + .switcher .star-cloud-1 {
   top: 25px;
   right: 5px;
   width: 10px;
@@ -256,7 +256,7 @@
   border-radius: 50%;
 }
 
-#mode-switcher:checked + .toggle .star-cloud-2 {
+#mode-switcher:checked + .switcher .star-cloud-2 {
   top: 25px;
   right: 10px;
   width: 15px;
@@ -264,13 +264,13 @@
   border-radius: 50%;
 }
 
-#mode-switcher:checked + .toggle .star-cloud-3 {
+#mode-switcher:checked + .switcher .star-cloud-3 {
   width: 20px;
   height: 10px;
   border-radius: 50%;
 }
 
-#mode-switcher:checked + .toggle .sun-moon .crater {
+#mode-switcher:checked + .switcher .sun-moon .crater {
   transform: rotate(-45deg) translateX(70px);
 }
 

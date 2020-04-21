@@ -11,7 +11,7 @@ const DarkModeSwitcher = (props) => {
           props.setDarkMode(!props.darkMode)
         }}
       />
-      <label htmlFor="mode-switcher" className="toggle">
+      <label htmlFor="mode-switcher" className="switcher">
         <span className="sun-moon">
           <span className="crater crater-1"></span>
         </span>
