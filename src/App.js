@@ -12,6 +12,7 @@ import {
   Tip,
   Hotlines,
   SVGInfo,
+  DarkModeSwitcher,
 } from './components'
 import {
   CLEAN_HANDS,
@@ -269,24 +270,7 @@ const App = () => {
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
       <Header />
 
-      <div className="mode-switcher-wrap static mt-4 md:mt-0 md:absolute">
-        <input
-          type="checkbox"
-          id="mode-switcher"
-          checked={!darkMode}
-          onChange={() => {
-            setDarkMode(!darkMode)
-          }}
-        />
-        <label htmlFor="mode-switcher" className="toggle">
-          <span className="sun-moon">
-            <span className="crater crater-1"></span>
-          </span>
-          <span className="star star-cloud-1"></span>
-          <span className="star star-cloud-2"></span>
-          <span className="star star-cloud-3"></span>
-        </label>
-      </div>
+      <DarkModeSwitcher darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <h2 className="text-5xl p-5 font-hairline">
         Philippines{' '}
