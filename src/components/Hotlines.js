@@ -23,7 +23,7 @@ const Hotlines = () => {
             DILG / DOH
           </td>
           <td className="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-            <a href="tel:+63289426843" className="text-blue-400 block p-1">
+            <a href="tel:+63289426843" className="text-blue-400 block p-2">
               (02) 894-26843
             </a>
 
@@ -38,27 +38,27 @@ const Hotlines = () => {
             </span>
           </td>
           <td className="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-            <a href="tel:+63288072628" className="text-blue-400 block p-1">
+            <a href="tel:+63288072628" className="text-blue-400 block p-2">
               (02) 880-72628
             </a>
 
-            <a href="tel:+63288072629" className="text-blue-400 block p-1">
+            <a href="tel:+63288072629" className="text-blue-400 block p-2">
               (02) 880-72629
             </a>
 
-            <a href="tel:+63288072630" className="text-blue-400 block p-1">
+            <a href="tel:+63288072630" className="text-blue-400 block p-2">
               (02) 880-72630
             </a>
 
-            <a href="tel:+63288072631" className="text-blue-400 block p-1">
+            <a href="tel:+63288072631" className="text-blue-400 block p-2">
               (02) 880-72631
             </a>
 
-            <a href="tel:+63288072632" className="text-blue-400 block p-1">
+            <a href="tel:+63288072632" className="text-blue-400 block p-2">
               (02) 880-72632
             </a>
 
-            <a href="tel:+63288072637" className="text-blue-400 block p-1">
+            <a href="tel:+63288072637" className="text-blue-400 block p-2">
               (02) 880-72637
             </a>
 
@@ -70,11 +70,11 @@ const Hotlines = () => {
             RITM LABORATORY CONFIRMATION RESULT
           </td>
           <td className="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-            <a href="tel:+639199279180" className="text-blue-400 block p-1">
+            <a href="tel:+639199279180" className="text-blue-400 block p-2">
               (63) 919 927-9180
             </a>
 
-            <a href="tel:+639199279204" className="text-blue-400 block p-1">
+            <a href="tel:+639199279204" className="text-blue-400 block p-2">
               (63) 919 927-9204
             </a>
           </td>
@@ -84,7 +84,7 @@ const Hotlines = () => {
             EMERGENCY HOTLINE
           </td>
           <td className="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-            <a href="tel:911" className="text-blue-400 block p-1">
+            <a href="tel:911" className="text-blue-400 block p-2">
               911
             </a>
           </td>
@@ -94,7 +94,7 @@ const Hotlines = () => {
             PRESIDENTIAL COMPLAINT CENTER
           </td>
           <td className="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-            <a href="tel:8888" className="text-blue-400 block p-1">
+            <a href="tel:8888" className="text-blue-400 block p-2">
               8888
             </a>
           </td>
@@ -104,7 +104,7 @@ const Hotlines = () => {
             SMART, PLDT, SUN and TNT
           </td>
           <td className="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-            <a href="tel:1555" className="text-blue-400 block p-1">
+            <a href="tel:1555" className="text-blue-400 block p-2">
               1555
             </a>
           </td>
@@ -114,7 +114,7 @@ const Hotlines = () => {
             PHILIPPINE NATIONAL RED CROSS
           </td>
           <td className="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base">
-            <a href="tel:143" className="text-blue-400 block p-1">
+            <a href="tel:143" className="text-blue-400 block p-2">
               143
             </a>
           </td>
@@ -124,7 +124,7 @@ const Hotlines = () => {
             RED CROSS EMERGENCY RESPONSE UNIT
           </td>
           <td className="border-b border-l px-2 md:px-4 py-2 text-sm md:text-base rounded-b-md">
-            <a href="tel:+63287902300" className="text-blue-400 block p-1">
+            <a href="tel:+63287902300" className="text-blue-400 block p-2">
               (02) 879-02300
             </a>
           </td>
