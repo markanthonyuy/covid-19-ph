@@ -65,6 +65,11 @@
   }
 }
 
+.share {
+  top: 105px;
+  z-index: 100;
+}
+
 .dark-mode {
   color: #d1d6de;
 }

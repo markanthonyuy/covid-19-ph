@@ -23,9 +23,16 @@ import {
   SOCIAL_DISTANCING,
   FLAG_PH,
   TIME,
+  FB,
+  TW,
 } from './images'
 
 import API from './api'
+
+const URL_TW_SHARE =
+  'https://twitter.com/intent/tweet?&text=Stay+updated+with+the+latest+Covid-19+statistics+of+test+conducted+confirmed+cases+active+cases+recoveries+and+deaths+in+the+Philippines+and+globally+Also+be+reminded+of+the+basic+protective+measure+to+mitigate+the+spread+of+the+virus&url=https%3A%2F%2Fcovid19.com.ph'
+const URL_FB_SHARE =
+  'https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcovid19.com.ph'
 
 const App = () => {
   // PH
@@ -271,6 +278,15 @@ const App = () => {
       <Header />
 
       <DarkModeSwitcher darkMode={darkMode} setDarkMode={setDarkMode} />
+
+      <div className="share fixed right-0">
+        <a href={URL_FB_SHARE} className="block pb-2 px-4" target="_blank">
+          <img src={FB} alt="Share Facebook" width="30" />
+        </a>
+        <a href={URL_TW_SHARE} className="block pb-2 px-4" target="_blank">
+          <img src={TW} alt="Share Twitter" width="30" />
+        </a>
+      </div>
 
       <h2 className="text-5xl p-5 font-hairline">
         Philippines{' '}

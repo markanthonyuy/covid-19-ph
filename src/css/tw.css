@@ -333,6 +333,10 @@ img {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -345,17 +349,26 @@ img {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
 .pr-4 {
   padding-right: 1rem;
 }
 .static {
   position: static;
 }
+.fixed {
+  position: fixed;
+}
 .absolute {
   position: absolute;
 }
 .relative {
   position: relative;
+}
+.right-0 {
+  right: 0;
 }
 .shadow {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
